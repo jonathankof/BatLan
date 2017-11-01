@@ -44,6 +44,19 @@ public class vista extends javax.swing.JFrame {
         }
         return documento;
     }
+    public String GuardarArchivo(File archivo, String documento){
+        String mensaje=null;
+        try{
+            salida=new FileOutputStream(archivo);
+            byte[] ward=documento.getBytes();
+            salida.write(ward);
+            mensaje="Este archivo fue guardado";
+        }catch(Exception e){
+            
+        }
+        
+        return mensaje;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +76,7 @@ public class vista extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -88,6 +102,10 @@ public class vista extends javax.swing.JFrame {
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Guardar");
         jMenu1.add(jMenuItem4);
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setText("Guardar como");
+        jMenu1.add(jMenuItem6);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Nuevo ");
@@ -252,6 +270,7 @@ public class vista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
