@@ -8,6 +8,8 @@ package proyecto;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -31,16 +33,33 @@ public class vista extends javax.swing.JFrame {
     File archivoAbierto;
     FileInputStream entrada;
     FileOutputStream salida;
+    String[] lineasDeCodigo=new String[100]; // En este arreglo se guardan linea por linea el código
+    int lineaActual;
     public String AbrirArchivo(File archivo){
         String documento = "";
-        try{
+        String linea="";
+        lineaActual=0;
+            try{
             entrada=new FileInputStream(archivo);
+            FileReader fr=new FileReader(archivo);
+            BufferedReader linCodigo= new BufferedReader(fr);
             int ar;
+             while ((linea=linCodigo.readLine())!=null)  {
+                 lineasDeCodigo[lineaActual]=linea;
+                 System.out.print(lineasDeCodigo[lineaActual]+"Linea del array\n");
+                 lineaActual=lineaActual+1;
+               System.out.print(lineaActual);  
+             }
+             
+             
             while((ar=entrada.read())!=-1){
                 char caracter=(char)ar;
                 documento+=caracter;
+                linea+=caracter;
+             
+                
             }
-        }catch(Exception e){
+                    }catch(Exception e){
             
         }
         return documento;
@@ -219,12 +238,20 @@ public class vista extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
-            archivoAbierto=archivo;
-                 }
+                    }
         if(archivo.canRead()){
             if(archivo.getName().endsWith("btl")){
                 String documento=AbrirArchivo(archivo);
-                codigoPrincipal.setText(documento);
+                String otroDocumento="";
+                //codigoPrincipal.setText(documento);
+                System.out.print(lineaActual);
+                  for (int i=0;i<lineaActual;i=i+1){
+                  //codigoPrincipal.setText(lineasDeCodigo[i]);  
+                  otroDocumento=otroDocumento+"<font color=\"red\">"+lineasDeCodigo[i]+"</font><br>";
+                  System.out.print(i);
+                } 
+                codigoPrincipal.setContentType("text/html");
+                codigoPrincipal.setText(otroDocumento);
             }else{
                 JOptionPane.showMessageDialog(null,"Este Archivo no pertenece a este lenguaje");
             }
