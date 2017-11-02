@@ -5,6 +5,8 @@
  */
 package proyecto;
 
+import java.io.File;
+
 /**
  *
  * @author Admin
@@ -16,7 +18,12 @@ public class proyecto {
      */
     public static void main(String[] args) {
         new vista().setVisible(true);
-        
+        String ruta="C:/Users/Administardor/Documents/GitHub/BatLan/jflex/src/proyecto/Lexer.flex";
+        generadorlexico(ruta);
+    }
+    public static void generadorlexico(String ruta){
+        File archivo=new File(ruta);
+        jflex.Main.generate(archivo);
     }
     
 }

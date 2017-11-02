@@ -1,5 +1,5 @@
-package analizador;
-import static analizador.Token.*;
+package proyecto;
+import static proyecto.Token.*;
 %%
 %class Lexer
 %type Token
@@ -16,6 +16,6 @@ public String lexeme;
 "*" {return MULT;}
 "-" {return RESTA;}
 "/" {return DIV;}
-{L}({L}|{D})* {lexeme=yytext(); return ID;}
+({L}|{D})* {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 . {return ERROR;}
