@@ -5,18 +5,29 @@ import static proyecto.Token.*;
 %type Token
 L = [a-zA-Z_]
 D = [0-9]
+PR=[PI/e/Fi/StepByStep]
 WHITE=[ \t\r\n]
 %{
 public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
-"=" {return ASSIGN;}
+""
+"bint" {return BINT;}
+"bdouble" {return BDOUBLE;}
+"bfloat" {return BFLOAT;}
+"bstring" {return BSTRING;}
+"bchar" {return BCHAR;}
+"bfloat" {return BFLOAT;}
+"bshort" {return BSHORT;}
+"bbyte" {return BBYTE;}
+
+"=" {return ASIGNACION;}
 "==" {return COMPARACION;}
 "+" {return SUMA;}
-"*" {return MULT;}
+"*" {return MULTIPLICACION;}
 "-" {return RESTA;}
-"/" {return DIV;}
+"/" {return DIVISION;}
 ({L}|{D})* {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 . {return ERROR;}

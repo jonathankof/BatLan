@@ -10,5 +10,5 @@ package proyecto;
  * @author Administardor
  */
 public enum Token {
-    INT, SUMA, RESTA, DIV, MULT, ASSIGN, ERROR, TEXTO
+    INT, SUMA, RESTA, DIVISION, MULTIPLICACION, ASIGNACION, ERROR, TEXTO, COMPARACION
 }
