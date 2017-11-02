@@ -28,6 +28,7 @@ public class vista extends javax.swing.JFrame {
     }
     JFileChooser seleccionar=new JFileChooser();
     File archivo;
+    File archivoAbierto;
     FileInputStream entrada;
     FileOutputStream salida;
     public String AbrirArchivo(File archivo){
@@ -110,6 +111,11 @@ public class vista extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Guardar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -213,7 +219,8 @@ public class vista extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
-        }
+            archivoAbierto=archivo;
+                 }
         if(archivo.canRead()){
             if(archivo.getName().endsWith("btl")){
                 String documento=AbrirArchivo(archivo);
@@ -227,6 +234,7 @@ public class vista extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
        if(seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
+            
             if(archivo.getName().endsWith("txt")){
                 String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
@@ -239,6 +247,22 @@ public class vista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
+            
+            
+                String Documento=codigoPrincipal.getText();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje);
+                }
+                    
+            
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
