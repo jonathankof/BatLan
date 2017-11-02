@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -322,56 +323,79 @@ public class vista extends javax.swing.JFrame {
         });
     }
 public void tokenizar() throws IOException{
-        int contIDs=0;
-        tokenslist = new LinkedList<identificador>();
-        File fichero = new File ("fichero.txt");
+      
+    
+        String texto=codigoPrincipal.getText();
+        String texto2=texto.toLowerCase();
+        File archivo = new File ("archivo.txt");
         PrintWriter writer;
-        try {
-            writer = new PrintWriter(fichero);
-            writer.print(codigoPrincipal.getText());
+        try {            
+            writer = new PrintWriter(archivo);
+            writer.print(texto2);
             writer.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Reader reader = new BufferedReader(new FileReader("fichero.txt"));
-        Lexer lexer = new Lexer (reader);
+        Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+        Lexer lexer = new Lexer (lector);
         String resultado="";
         while (true){
-            Token token =lexer.yylex();
+            Token token =lexer.yylex();            
             if (token == null){
-                for(int i=0;i<tokenslist.size();i++){
-                    System.out.println(tokenslist.get(i).nombre + "=" + tokenslist.get(i).ID);
-                }
-                codigoPrincipal.setText(resultado);
+               jEditorPane2.setText(resultado);
                 return;
             }
             switch (token){
                 case SUMA:
-                    resultado=resultado+ "<+>";
+                    resultado=resultado+ "+ Simbolo Suma\n";
                     break;
                 case RESTA:
-                    resultado=resultado+ "<->";
+                    resultado=resultado+ "- Simbolo Menos\n";
                     break;
                 case MULTIPLICACION:
-                    resultado=resultado+ "<*>";
+                    resultado=resultado+ "* Simbolo Multiplicacion\n";
                     break;
                 case DIVISION:
-                    resultado=resultado+ "</>";
+                    resultado=resultado+ "/ Simbolo Division\n";
                     break;
                 case ASIGNACION:
-                    resultado=resultado+ "<=>";
+                    resultado=resultado+ "= Simbolo Asignacion\n";
                     break;
                 case ERROR:
-                    resultado=resultado+ "Error, simbolo no reconocido ";
+                    resultado=resultado+ lexer.lexeme+ " Simbolo desconocido\n";
                     break;
-                case TEXTO: {
-                    contIDs++;
-                   
-                    resultado=resultado+ "<ID" + lexer.lexeme  + "> ";
-                    break;
-                }
+                case TEXTO:                    
+                    resultado=resultado+ lexer.lexeme  + " Texto\n";
+                    break;                
                 case INT:
-                    resultado=resultado+ "< " + lexer.lexeme + "> ";
+                    resultado=resultado+ lexer.lexeme + " Entero\n";
+                    break;
+                case BINT:
+                    resultado=resultado+ "bint Palabra reservada\n";
+                    break;
+                case BDOUBLE:
+                    resultado=resultado+ "bdouble Palabra reservada\n";
+                    break; 
+                case BFLOAT:
+                    resultado=resultado+ "bint Palabra reservada\n";
+                    break; 
+                case BCHAR:
+                    resultado=resultado+ "bchar Palabra reservada\n";
+                    break;      
+               case BBYTE:
+                    resultado=resultado+ "bint Palabra reservada\n";
+                    break;   
+                case PARENTESISD:
+                    resultado=resultado+ ") Parentesis Derecho\n";
+                    break;  
+                case PARENTESISI:
+                    resultado=resultado+ "( Parentesis Izquierdo\n";
+                    break; 
+                case INICIOB:
+                    resultado=resultado+ "{ Inicio de Bloque\n";
+                    break;     
+                case FINALB:
+                    resultado=resultado+ "} Final de Bloque\n";
                     break;
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";

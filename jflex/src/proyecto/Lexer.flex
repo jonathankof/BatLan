@@ -20,7 +20,10 @@ public String lexeme;
 "bfloat" {return BFLOAT;}
 "bshort" {return BSHORT;}
 "bbyte" {return BBYTE;}
-
+"(" {return PARENTESISI;}
+")" {return PARENTESISD;}
+"{" {return INICIOB;}
+"}" {return FINALB;}
 "=" {return ASIGNACION;}
 "==" {return COMPARACION;}
 "+" {return SUMA;}
@@ -29,4 +32,4 @@ public String lexeme;
 "/" {return DIVISION;}
 ({L}|{D})* {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
-. {return ERROR;}
+. {lexeme=yytext(); return ERROR;}
