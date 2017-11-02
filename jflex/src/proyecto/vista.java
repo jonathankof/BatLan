@@ -5,9 +5,18 @@
  */
 package proyecto;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -150,6 +159,11 @@ public class vista extends javax.swing.JFrame {
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
         jMenuItem12.setText("Correr");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
@@ -264,6 +278,15 @@ public class vista extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+         try{
+             tokenizar();
+        }
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,7 +321,63 @@ public class vista extends javax.swing.JFrame {
             }
         });
     }
-
+public void tokenizar() throws IOException{
+        int contIDs=0;
+        tokenslist = new LinkedList<identificador>();
+        File fichero = new File ("fichero.txt");
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(fichero);
+            writer.print(codigoPrincipal.getText());
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Reader reader = new BufferedReader(new FileReader("fichero.txt"));
+        Lexer lexer = new Lexer (reader);
+        String resultado="";
+        while (true){
+            Token token =lexer.yylex();
+            if (token == null){
+                for(int i=0;i<tokenslist.size();i++){
+                    System.out.println(tokenslist.get(i).nombre + "=" + tokenslist.get(i).ID);
+                }
+                codigoPrincipal.setText(resultado);
+                return;
+            }
+            switch (token){
+                case SUMA:
+                    resultado=resultado+ "<+>";
+                    break;
+                case RESTA:
+                    resultado=resultado+ "<->";
+                    break;
+                case MULTIPLICACION:
+                    resultado=resultado+ "<*>";
+                    break;
+                case DIVISION:
+                    resultado=resultado+ "</>";
+                    break;
+                case ASIGNACION:
+                    resultado=resultado+ "<=>";
+                    break;
+                case ERROR:
+                    resultado=resultado+ "Error, simbolo no reconocido ";
+                    break;
+                case TEXTO: {
+                    contIDs++;
+                   
+                    resultado=resultado+ "<ID" + lexer.lexeme  + "> ";
+                    break;
+                }
+                case INT:
+                    resultado=resultado+ "< " + lexer.lexeme + "> ";
+                    break;
+                default:
+                    resultado=resultado+ "<"+ lexer.lexeme + "> ";
+            }
+    }
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane codigoPrincipal;
     private javax.swing.JEditorPane jEditorPane2;

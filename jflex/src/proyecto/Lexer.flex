@@ -12,7 +12,6 @@ public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
-""
 "bint" {return BINT;}
 "bdouble" {return BDOUBLE;}
 "bfloat" {return BFLOAT;}
