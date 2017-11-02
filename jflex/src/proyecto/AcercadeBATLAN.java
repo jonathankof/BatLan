@@ -29,6 +29,8 @@ public class AcercadeBATLAN extends javax.swing.JDialog {
 
         label1 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -39,21 +41,32 @@ public class AcercadeBATLAN extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BatLan");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("El lenguaje es llamado BATLAN en honor al superhéroe Batman debido a que sus características \nestán inspiradas en las funcionalidades de su traje y el nombre podría ser traducido como \nBatman lenguage, inicialmente seria llamado batilenguaje pero era demasiado largo y se decido \ncambiar por algo más corto y quedo como BATLAN. ");
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(317, 317, 317)
                 .addComponent(jLabel1)
-                .addGap(355, 355, 355))
+                .addGap(323, 401, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(275, 275, 275))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -104,6 +117,8 @@ public class AcercadeBATLAN extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
