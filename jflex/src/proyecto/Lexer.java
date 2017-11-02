@@ -557,7 +557,7 @@ public String lexeme;
             }
           case 12: break;
           case 4: 
-            { return ASSIGN;
+            { return ASSIGNACION;
             }
           case 13: break;
           case 5: 
@@ -565,7 +565,7 @@ public String lexeme;
             }
           case 14: break;
           case 6: 
-            { return MULT;
+            { return MULTIPLICACION;
             }
           case 15: break;
           case 7: 
@@ -573,7 +573,7 @@ public String lexeme;
             }
           case 16: break;
           case 8: 
-            { return DIV;
+            { return DIVISION;
             }
           case 17: break;
           case 9: 

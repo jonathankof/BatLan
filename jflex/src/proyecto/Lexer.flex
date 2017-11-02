@@ -11,11 +11,12 @@ public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
-"=" {return ASSIGN;}
+"=" {return ASSIGNACION;}
+"=="{return COMPARACION;}
 "+" {return SUMA;}
-"*" {return MULT;}
+"*" {return MULTIPLICACION;}
 "-" {return RESTA;}
-"/" {return DIV;}
+"/" {return DIVISION;}
 ({L}|{D})* {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 . {return ERROR;}
