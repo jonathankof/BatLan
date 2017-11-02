@@ -12,6 +12,7 @@ public String lexeme;
 %%
 {WHITE} {/*Ignore*/}
 "=" {return ASSIGN;}
+"==" {return COMPARACION;}
 "+" {return SUMA;}
 "*" {return MULT;}
 "-" {return RESTA;}
