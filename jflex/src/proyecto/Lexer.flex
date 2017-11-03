@@ -11,6 +11,9 @@ public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
+"Fi"{return CONSTANTE;}
+"e"{return CONSTANTE;}
+"PI"{return CONSTANTE;}
 "=" {return ASSIGNACION;}
 "=="{return COMPARACION;}
 "+" {return SUMA;}
