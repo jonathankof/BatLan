@@ -478,6 +478,24 @@ public void tokenizar() throws IOException{
               case OR:
                   resultado=resultado+ lexer.lexeme+ "Simbolo especial";
                   break;
+              case ERR:
+                  resultado=resultado+ lexer.lexeme+ "Error";
+                  break;
+              case LOGDOS:
+                  resultado=resultado+ lexer.lexeme+ "Operador";
+                  break;
+              case LOGDIEZ:
+                  resultado=resultado+ lexer.lexeme+ "Operador";
+                  break;
+              case LNDOS:
+                  resultado=resultado+ lexer.lexeme+ "Operador";
+                  break;
+              case LNDIEZ:
+                  resultado=resultado+ lexer.lexeme+ "Operador";
+                  break;
+              case RAIZ:
+                  resultado=resultado+ lexer.lexeme+ "Operador";
+                  break;
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
