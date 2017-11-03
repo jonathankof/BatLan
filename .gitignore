@@ -24,4 +24,15 @@ puto/build/classes/proyecto/vista.class
 puto/build/classes/proyecto/vista.class
 puto/nbproject/private/private.properties
 /jflex/build/
+<<<<<<< HEAD
 /jflex/dist/
+=======
+proyectojflex/nbproject/private/private.properties
+jflex/archivo.txt
+jflex/nbproject/private/private.properties
+*.properties
+>>>>>>> Cupido
+jflex/src/proyecto/Lexer.java~
+jflex/archivo.txt
+jflex/fichero.txt
+jflex/nbproject/private/private.xml
