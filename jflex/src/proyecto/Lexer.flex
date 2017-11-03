@@ -10,6 +10,7 @@ case/Switch/true/false/]
 OBJETO=[asm/arm/leg/shoulder/lights()/vehicle/weapon]
 EVENTO=[event/left/right/listener/up/down/jump/walk/alfred/mrj/climb/carry]
 WHITE=[ \t\r\n]
+ERR=[Error/ SystemError/]
 %{
 public String lexeme;
 %}
@@ -50,6 +51,12 @@ public String lexeme;
 "&&" {return AND;}
 "^" {return POW;}
 "||" {return OR;}
+"ERR" {return ERR;}
+"log2()" {return LOGDOS;}
+"lgo10()" {return LOGDIEZ;}
+"ln2()" {return LNDOS;}
+"ln10()" {return LNDIEZ;}
+"sqrt()" {return RAIZ;}
 "PR" {return PR;}
 "EVENTO" {return EVENTO;}
 "OBJETO" {return OBJETO;}
