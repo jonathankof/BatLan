@@ -336,42 +336,57 @@ public void tokenizar() throws IOException{
         } catch (FileNotFoundException ex) {
             Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
         }
+        codigoPrincipal.setContentType("text/html");
+        jEditorPane2.setContentType("text/html");
         Reader lector = new BufferedReader(new FileReader("archivo.txt"));
         Lexer lexer = new Lexer (lector);
         String resultado="";
+        String textoFormateado="";
         while (true){
             Token token =lexer.yylex();            
             if (token == null){
                jEditorPane2.setText(resultado);
+               codigoPrincipal.setText(textoFormateado);
                 return;
             }
+        
+     
             switch (token){
                 case SUMA:
-                    resultado=resultado+ "+ Simbolo Suma\n";
+                    resultado=resultado+ "+ Simbolo SUMA";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTA:
                     resultado=resultado+ "- Simbolo Menos\n";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">-</font>";
                     break;
                 case MULTIPLICACION:
                     resultado=resultado+ "* Simbolo Multiplicacion\n";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">*</font>";
                     break;
                 case DIVISION:
                     resultado=resultado+ "/ Simbolo Division\n";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
                     break;
                 case ASIGNACION:
                     resultado=resultado+ "= Simbolo Asignacion\n";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
                     resultado=resultado+ lexer.lexeme+ " Simbolo desconocido\n";
+                   textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
                     break;
                 case TEXTO:                    
                     resultado=resultado+ lexer.lexeme  + " Texto\n";
+                    textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
                     resultado=resultado+ lexer.lexeme + " Entero\n";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+lexer.lexeme+"</font>";
                     break;
                 case BINT:
                     resultado=resultado+ "bint Palabra reservada\n";
+                    
                     break;
                 case BDOUBLE:
                     resultado=resultado+ "bdouble Palabra reservada\n";
@@ -402,7 +417,10 @@ public void tokenizar() throws IOException{
                     break;  
               case COMILLAS:
                     resultado=resultado+ "Comilla Doble\n";
-                    break;         
+                    break;  
+              case FLOAT:
+                    resultado=resultado+ lexer.lexeme+ " Numero Flotante\n";
+                    break;       
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
