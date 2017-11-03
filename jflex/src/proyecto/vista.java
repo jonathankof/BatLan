@@ -386,40 +386,51 @@ public void tokenizar() throws IOException{
                     break;
                 case BINT:
                     resultado=resultado+ "bint Palabra reservada\n";
-                    
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
                     break;
                 case BDOUBLE:
                     resultado=resultado+ "bdouble Palabra reservada\n";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
                     break; 
                 case BFLOAT:
                     resultado=resultado+ "bint Palabra reservada\n";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
                     break; 
                 case BCHAR:
                     resultado=resultado+ "bchar Palabra reservada\n";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
                     break;      
                case BBYTE:
                     resultado=resultado+ "bint Palabra reservada\n";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
                     break;   
                 case PARENTESISD:
                     resultado=resultado+ ") Parentesis Derecho\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+")"+"</font>";
                     break;  
                 case PARENTESISI:
                     resultado=resultado+ "( Parentesis Izquierdo\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"("+"</font>";
                     break; 
                 case INICIOB:
                     resultado=resultado+ "{ Inicio de Bloque\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"{"+"</font>";
                     break;     
                 case FINALB:
                     resultado=resultado+ "} Final de Bloque\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"}"+"</font>";
                     break;
               case COMILLAD:
                     resultado=resultado+ "Comilla Doble\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0022"+"</font>";
                     break;  
               case COMILLAS:
-                    resultado=resultado+ "Comilla Doble\n";
+                    resultado=resultado+ "Comilla Simple\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0027"+"</font>";
                     break;  
               case FLOAT:
                     resultado=resultado+ lexer.lexeme+ " Numero Flotante\n";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
                     break;       
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
