@@ -283,11 +283,8 @@ public class vista extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
          try{
-        textoFormateado=" ";
-        resultado=" ";
         tokenizar();
-   
-        }
+     }
         catch (IOException ex){
             System.out.println(ex.getMessage());
         }
@@ -332,7 +329,7 @@ public void tokenizar() throws IOException{
     
         String texto=codigoPrincipal.getText();
         String texto2=texto.toLowerCase();
-        String texto3=texto2;
+         
         File archivo = new File ("archivo.txt");
         PrintWriter writer;
         try {            
@@ -341,117 +338,108 @@ public void tokenizar() throws IOException{
             writer.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        codigoPrincipal.setContentType("text/html");
-        jEditorPane2.setContentType("text/html");
+        }       
         Reader lector = new BufferedReader(new FileReader("archivo.txt"));
         Lexer lexer;
         Reader lector2=lector;
-        if(cont==1){
         lexer = new Lexer (lector);
-        cont++;
-        }else{
-        lexer = new Lexer (lector2);   
-        cont++;
-        }
         
-        
+         jEditorPane2.setContentType("text/html");
         resultado="";
         textoFormateado="";
         while (true){
             Token token =lexer.yylex();            
             if (token == null){
                jEditorPane2.setText(resultado);
-               codigoPrincipal.setText(textoFormateado);
+               
                 return;
             }     
-     
-            switch (token){
+                switch (token){
                 case SUMA:
-                    resultado=resultado+ "+ Simbolo SUMA";
+                    resultado=resultado+ "+ Simbolo SUMA<br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTA:
-                    resultado=resultado+ "- Simbolo Menos\n";
+                    resultado=resultado+ "- Simbolo Menos<br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">-</font>";
                     break;
                 case MULTIPLICACION:
-                    resultado=resultado+ "* Simbolo Multiplicacion\n";
+                    resultado=resultado+ "* Simbolo Multiplicacion<br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">*</font>";
                     break;
                 case DIVISION:
-                    resultado=resultado+ "/ Simbolo Division\n";
+                    resultado=resultado+ "/ Simbolo Division<br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
                     break;
                 case ASIGNACION:
-                    resultado=resultado+ "= Simbolo Asignacion\n";
+                    resultado=resultado+ "= Simbolo Asignacion<br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
-                    resultado=resultado+ lexer.lexeme+ " Simbolo desconocido\n";
+                    resultado=resultado+ lexer.lexeme+ " Simbolo desconocido<br>";
                    textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
                     break;
                 case TEXTO:                    
-                    resultado=resultado+ lexer.lexeme  + " Texto\n";
+                    resultado=resultado+ lexer.lexeme  + " Texto<br>";
                     textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
-                    resultado=resultado+ lexer.lexeme + " Entero\n";
+                    resultado=resultado+ lexer.lexeme + " Entero<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+lexer.lexeme+"</font>";
                     break;
                 case BINT:
-                    resultado=resultado+ "bint Palabra reservada\n";
+                    resultado=resultado+ "bint Palabra reservada<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
                     break;
                 case BDOUBLE:
-                    resultado=resultado+ "bdouble Palabra reservada\n";
+                    resultado=resultado+ "bdouble Palabra reservada<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
                     break; 
                 case BFLOAT:
-                    resultado=resultado+ "bint Palabra reservada\n";
+                    resultado=resultado+ "bint Palabra reservada<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
                     break; 
                 case BCHAR:
-                    resultado=resultado+ "bchar Palabra reservada\n";
+                    resultado=resultado+ "bchar Palabra reservada<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
                     break;      
                case BBYTE:
-                    resultado=resultado+ "bint Palabra reservada\n";
+                    resultado=resultado+ "bint Palabra reservada<br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
                     break;   
                 case PARENTESISD:
-                    resultado=resultado+ ") Parentesis Derecho\n";
+                    resultado=resultado+ ") Parentesis Derecho<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+")"+"</font>";
                     break;  
                 case PARENTESISI:
-                    resultado=resultado+ "( Parentesis Izquierdo\n";
+                    resultado=resultado+ "( Parentesis Izquierdo<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+"("+"</font>";
                     break; 
                 case INICIOB:
-                    resultado=resultado+ "{ Inicio de Bloque\n";
+                    resultado=resultado+ "{ Inicio de Bloque<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+"{"+"</font>";
                     break;     
                 case FINALB:
-                    resultado=resultado+ "} Final de Bloque\n";
+                    resultado=resultado+ "} Final de Bloque<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+"}"+"</font>";
                     break;
               case COMILLAD:
-                    resultado=resultado+ "Comilla Doble\n";
+                    resultado=resultado+ "Comilla Doble<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0022"+"</font>";
                     break;  
               case COMILLAS:
-                    resultado=resultado+ "Comilla Simple\n";
+                    resultado=resultado+ "Comilla Simple<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0027"+"</font>";
                     break;  
               case FLOAT:
-                    resultado=resultado+ lexer.lexeme+ " Numero Flotante\n";
+                    resultado=resultado+ lexer.lexeme+ " Numero Flotante<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
                     break;       
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
     }
-        
+     
         
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables

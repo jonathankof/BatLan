@@ -7,6 +7,7 @@ L = [a-zA-Z_]
 D = [0-9]
 PR=[PI/e/Fi/StepByStep]
 WHITE=[ \t\r\n]
+VARIABLE=[bint/bfloat]
 %{
 public String lexeme;
 %}
@@ -33,7 +34,7 @@ public String lexeme;
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
- ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
-(("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
-("bint"|"bfloat"|"bbyte")
+{D}+ {lexeme=yytext(); return INT;}
+
+(""){WHITE}+{L}({L}|{D})* {lexeme=yytext(); return NOMVAR;}
 . {lexeme=yytext(); return ERROR;}
