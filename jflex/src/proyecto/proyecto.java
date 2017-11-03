@@ -18,7 +18,8 @@ public class proyecto {
      */
     public static void main(String[] args) {
         new vista().setVisible(true);
-        String ruta="C:/Users/Administardor/Documents/GitHub/BatLan/jflex/src/proyecto/Lexer.flex";
+        String archivo=(new File (".").getAbsolutePath());
+        String ruta=archivo+"/src/proyecto/Lexer.flex";
         generadorlexico(ruta);
     }
     public static void generadorlexico(String ruta){

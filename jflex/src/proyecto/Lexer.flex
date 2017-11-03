@@ -35,5 +35,5 @@ public String lexeme;
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 (("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
-({L}|{D})* {return ERROR;}
+("bint"|"bfloat"|"bbyte")
 . {lexeme=yytext(); return ERROR;}
