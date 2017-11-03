@@ -397,6 +397,12 @@ public void tokenizar() throws IOException{
                 case FINALB:
                     resultado=resultado+ "} Final de Bloque\n";
                     break;
+              case COMILLAD:
+                    resultado=resultado+ "Comilla Doble\n";
+                    break;  
+              case COMILLAS:
+                    resultado=resultado+ "Comilla Doble\n";
+                    break;         
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
