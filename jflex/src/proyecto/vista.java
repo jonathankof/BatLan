@@ -26,8 +26,10 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class vista extends javax.swing.JFrame {
-
-    /**
+  String resultado="";
+  String textoFormateado="";
+  int cont=1;
+  /**
      * Creates new form vista
      */
     public vista() {
@@ -281,7 +283,10 @@ public class vista extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
          try{
-             tokenizar();
+        textoFormateado=" ";
+        resultado=" ";
+        tokenizar();
+   
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
@@ -327,6 +332,7 @@ public void tokenizar() throws IOException{
     
         String texto=codigoPrincipal.getText();
         String texto2=texto.toLowerCase();
+        String texto3=texto2;
         File archivo = new File ("archivo.txt");
         PrintWriter writer;
         try {            
@@ -339,17 +345,26 @@ public void tokenizar() throws IOException{
         codigoPrincipal.setContentType("text/html");
         jEditorPane2.setContentType("text/html");
         Reader lector = new BufferedReader(new FileReader("archivo.txt"));
-        Lexer lexer = new Lexer (lector);
-        String resultado="";
-        String textoFormateado="";
+        Lexer lexer;
+        Reader lector2=lector;
+        if(cont==1){
+        lexer = new Lexer (lector);
+        cont++;
+        }else{
+        lexer = new Lexer (lector2);   
+        cont++;
+        }
+        
+        
+        resultado="";
+        textoFormateado="";
         while (true){
             Token token =lexer.yylex();            
             if (token == null){
                jEditorPane2.setText(resultado);
                codigoPrincipal.setText(textoFormateado);
                 return;
-            }
-        
+            }     
      
             switch (token){
                 case SUMA:
@@ -436,6 +451,8 @@ public void tokenizar() throws IOException{
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
     }
+        
+        
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane codigoPrincipal;
