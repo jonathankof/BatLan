@@ -420,7 +420,64 @@ public void tokenizar() throws IOException{
                     break;  
               case FLOAT:
                     resultado=resultado+ lexer.lexeme+ " Numero Flotante\n";
-                    break;       
+                    break; 
+              case PR:
+                  resultado=resultado+ lexer.lexeme+ "Palabra reservada";
+                  break;
+              case OBJETO:
+                  resultado=resultado+ lexer.lexeme+ "Objeto";
+                  break;
+              case EVENTO:
+                  resultado=resultado+ lexer.lexeme+ "Evento";
+                  break;
+              case DIRECTIVAS: 
+                  resultado=resultado+ lexer.lexeme+ "Directiva";
+                  break;
+              case MODULO: 
+                  resultado=resultado+ lexer.lexeme+ "Modulo";
+                  break;
+              case ANGLED:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case ANGLEI: 
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case PUNTO:
+                  resultado=resultado+ lexer.lexeme+ "Punto";
+                  break;
+              case COMA:
+                  resultado=resultado+ lexer.lexeme+ "Coma";
+                  break;
+              case ASPERSON:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case NOT: 
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case SUMAM:
+              resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+              break;
+              case RESTAM:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case DIVISIONM:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case MULTIPLICACIONM:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case DIFERENTE: 
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case AND:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case POW:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
+              case OR:
+                  resultado=resultado+ lexer.lexeme+ "Simbolo especial";
+                  break;
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
