@@ -356,23 +356,23 @@ public void tokenizar() throws IOException{
             }     
                 switch (token){
                 case SUMA:
-                    resultado=resultado+ "+ Simbolo SUMA<br>";
-                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    resultado=resultado+ "<font color=\"gray\">+ Simbolo SUMA</font><br>";
+                    textoFormateado=textoFormateado+"+";
                     break;
                 case RESTA:
-                    resultado=resultado+ "- Simbolo Menos<br>";
+                    resultado=resultado+ "<font color=\"gray\">- Simbolo Menos</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">-</font>";
                     break;
                 case MULTIPLICACION:
-                    resultado=resultado+ "* Simbolo Multiplicacion<br>";
+                    resultado=resultado+ "<font color=\"gray\">* Simbolo Multiplicacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">*</font>";
                     break;
                 case DIVISION:
-                    resultado=resultado+ "/ Simbolo Division<br>";
+                    resultado=resultado+ "<font color=\"gray\">/ Simbolo Division</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
                     break;
                 case ASIGNACION:
-                    resultado=resultado+ "= Simbolo Asignacion<br>";
+                    resultado=resultado+ "<font color=\"gray\">= Simbolo Asignacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
@@ -384,8 +384,8 @@ public void tokenizar() throws IOException{
                     textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
-                    resultado=resultado+ lexer.lexeme + " Entero<br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+lexer.lexeme+"</font>";
+                    resultado=resultado+ lexer.lexeme + "<font color=\"green\"> Entero<br></font>";
+                    
                     break;
                 case BINT:
                     resultado=resultado+ "bint Palabra reservada<br>";
