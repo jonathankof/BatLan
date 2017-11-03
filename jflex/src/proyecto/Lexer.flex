@@ -32,7 +32,7 @@ public String lexeme;
 "/" {return DIVISION;}
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
-"\u0022"({L}|{D}|{" "})*"\u0022" {lexeme=yytext(); return TEXTO;}
+"\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
  ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 ({L}|{D})* {return ERROR;}
 . {lexeme=yytext(); return ERROR;}

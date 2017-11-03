@@ -1,13 +1,1 @@
-import situations import threading import defense main emergencies (){
-under_attack: situation
-threads=list()
-defensive=threading.thread(under_attack) threads.append(defensive) defensive.start emergency: situation place1, place2: location place1=emergency.place place2=here
-try{
-if (place1 =! place2)
-else
-{ go_walk:action for (place1, place2, stepbystep) go_walk.walk }{ instruction:action if (instruction.event()) { instruction.do} }
-} except error:systemerror
-{
-msgwarning('el sistema no puede operar porque:',error)
-}
-}
+" egsdv rgdh drfgfhmt"
