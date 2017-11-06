@@ -60,3 +60,4 @@ public String lexeme;
 (("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
 ("bint"|"bfloat"|"bbyte")
 . {lexeme=yytext(); return ERROR;}
+"<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML }
