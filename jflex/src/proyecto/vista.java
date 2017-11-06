@@ -336,7 +336,7 @@ public void tokenizar() throws IOException{
         } catch (FileNotFoundException ex) {
             Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        codigoPrincipal.setContentType("text/html");
+       
         jEditorPane2.setContentType("text/html");
         Reader lector = new BufferedReader(new FileReader("archivo.txt"));
         Lexer lexer = new Lexer (lector);
@@ -346,7 +346,7 @@ public void tokenizar() throws IOException{
             Token token =lexer.yylex();            
             if (token == null){
                jEditorPane2.setText(resultado);
-               codigoPrincipal.setText(textoFormateado);
+               
                 return;
             }
         
@@ -385,14 +385,13 @@ public void tokenizar() throws IOException{
                     textoFormateado=textoFormateado+"<font color=\"green\">"+lexer.lexeme+"</font>";
                     break;
                 case BINT:
-                    resultado=resultado+ "bint Palabra reservada\n";
-                    
+                    resultado=resultado+ "bint Palabra reservada\n";                    
                     break;
                 case BDOUBLE:
                     resultado=resultado+ "bdouble Palabra reservada\n";
                     break; 
                 case BFLOAT:
-                    resultado=resultado+ "bint Palabra reservada\n";
+                    resultado=resultado+ "bfloat Palabra reservada\n";
                     break; 
                 case BCHAR:
                     resultado=resultado+ "bchar Palabra reservada\n";
