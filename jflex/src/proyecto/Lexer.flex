@@ -5,8 +5,7 @@ import static proyecto.Token.*;
 %type Token
 L = [a-zA-Z_]
 D = [0-9]
-PR=[PI/euler/Fi/StepByStep/blong/here/MsgWarning/main/private/public/import/if/then/else/try/except/while/for/do/
-case/Switch/true/false/]
+PR=[PI/euler/Fi/StepByStep/blong/here/MsgWarning/main/private/public/import/if/then/else/try/except/while/for/do/case/Switch/true/false/]
 OBJETO=[asm/arm/leg/shoulder/lights()/vehicle/weapon]
 EVENTO=[event/left/right/listener/up/down/jump/walk/alfred/mrj/climb/carry]
 WHITE=[ \t\r\n]
@@ -56,8 +55,8 @@ public String lexeme;
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
- ("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
+("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
 (("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
 ("bint"|"bfloat"|"bbyte")
 . {lexeme=yytext(); return ERROR;}
-"<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML }
+"<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
