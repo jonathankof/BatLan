@@ -16,15 +16,15 @@ public String lexeme;
 %%
 {WHITE} {""*Ignore*""}
 {ESPACIO} {""*Ignore*""}
-"bint" {return BINT;}
-"bdouble" {return BDOUBLE;}
-"bfloat" {return BFLOAT;}
-"bstring" {return BSTRING;}
-"bchar" {return BCHAR;}
-"bfloat" {return BFLOAT;}
-"bshort" {return BSHORT;}
-"bbyte" {return BBYTE;}
-"bint[]" {return BINTA;}
+"bint" {return PR;}
+"bdouble" {return PR;}
+"bfloat" {return PR;}
+"bstring" {return PR;}
+"bchar" {return PR;}
+"bfloat" {return PR;}
+"bshort" {return PR;}
+"bbyte" {return PR;}
+"bint[]" {return PR;}
 "@" {return DIRECTIVAS;}
 "%" {return MODULO;}
 ">" {return ANGLED;}
@@ -64,26 +64,9 @@ public String lexeme;
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
 """*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
 . {lexeme=yytext(); return ERROR;}
-"PI"
-"euler"
-"Fi"
-"StepByStep"
-"blong"
-"here"
-"MsgWarning"
-"main"
-"private"
-"public"
-"import"
-"if"
-"then"
-"else"
-"try"
-"except"
-"while"
-"for"
-"do"
-"case"
-"Switch"
-"true"
-"false"
+"PI" {lexeme=yytext(); return PR; }
+"euler" {lexeme=yytext(); return PR; }
+"Fi" {lexeme=yytext(); return PR; }
+"StepByStep" {lexeme=yytext(); return PR; }
+"blong" {lexeme=yytext(); return PR; }
+"here" {lexeme=yytext(); return PR; }
