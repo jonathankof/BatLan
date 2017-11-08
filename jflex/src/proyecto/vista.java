@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,29 +38,37 @@ public class vista extends javax.swing.JFrame {
     File archivoAbierto;
     FileInputStream entrada;
     FileOutputStream salida;
+    enum sal{
+     colorDeTexto,compilar
+    };
+    boolean Abierto=false;
     public String AbrirArchivo(File archivo){
         String documento = "";
         try{
             entrada=new FileInputStream(archivo);
             int ar;
+            Abierto=true;
             while((ar=entrada.read())!=-1){
                 char caracter=(char)ar;
                 documento+=caracter;
             }
         }catch(Exception e){
-            
+             
         }
         return documento;
     }
     public String GuardarArchivo(File archivo, String documento){
         String mensaje=null;
+        
         try{
+            Abierto=true;
             salida=new FileOutputStream(archivo);
             byte[] ward=documento.getBytes();
             salida.write(ward);
             mensaje="Este archivo fue guardado";
         }catch(Exception e){
             mensaje="Hay un problema:"+e.toString();
+             Abierto=false;
         }
         
         return mensaje;
@@ -82,18 +89,18 @@ public class vista extends javax.swing.JFrame {
         codigoPrincipal = new javax.swing.JEditorPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane2 = new javax.swing.JEditorPane();
-        jButton1 = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        botonGuardarComo = new javax.swing.JButton();
+        botonCorrer = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuPArchivo = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        abrirArchivo = new javax.swing.JMenuItem();
         guardarArchivo = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        guardarComo = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -122,12 +129,12 @@ public class vista extends javax.swing.JFrame {
         jEditorPane2.setPreferredSize(new java.awt.Dimension(10, 20));
         jScrollPane2.setViewportView(jEditorPane2);
 
-        jButton1.setAction(guardarArchivo.getAction());
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
-        jButton1.setPreferredSize(new java.awt.Dimension(25, 25));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardar.setAction(guardarArchivo.getAction());
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
+        botonGuardar.setPreferredSize(new java.awt.Dimension(25, 25));
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonGuardarActionPerformed(evt);
             }
         });
 
@@ -140,21 +147,21 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setAction(jMenuItem6.getAction());
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/save_3621.png"))); // NOI18N
-        jButton3.setToolTipText("");
-        jButton3.setPreferredSize(new java.awt.Dimension(25, 25));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarComo.setAction(guardarComo.getAction());
+        botonGuardarComo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/save_3621.png"))); // NOI18N
+        botonGuardarComo.setToolTipText("");
+        botonGuardarComo.setPreferredSize(new java.awt.Dimension(25, 25));
+        botonGuardarComo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonGuardarComoActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/hombre-corriendo_318-1564.jpg"))); // NOI18N
-        jButton4.setPreferredSize(new java.awt.Dimension(25, 25));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonCorrer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/hombre-corriendo_318-1564.jpg"))); // NOI18N
+        botonCorrer.setPreferredSize(new java.awt.Dimension(25, 25));
+        botonCorrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonCorrerActionPerformed(evt);
             }
         });
 
@@ -175,7 +182,7 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Archivo");
+        menuPArchivo.setText("Archivo");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/nuevo.jpg"))); // NOI18N
@@ -185,17 +192,17 @@ public class vista extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        menuPArchivo.add(jMenuItem2);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/open-folder-outline_318-41918.jpg"))); // NOI18N
-        jMenuItem3.setText("Abrir...");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        abrirArchivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        abrirArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/open-folder-outline_318-41918.jpg"))); // NOI18N
+        abrirArchivo.setText("Abrir...");
+        abrirArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                abrirArchivoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        menuPArchivo.add(abrirArchivo);
 
         guardarArchivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         guardarArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
@@ -205,17 +212,17 @@ public class vista extends javax.swing.JFrame {
                 guardarArchivoActionPerformed(evt);
             }
         });
-        jMenu1.add(guardarArchivo);
+        menuPArchivo.add(guardarArchivo);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/save_3621.png"))); // NOI18N
-        jMenuItem6.setText("Guardar como");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        guardarComo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        guardarComo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/save_3621.png"))); // NOI18N
+        guardarComo.setText("Guardar como");
+        guardarComo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                guardarComoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        menuPArchivo.add(guardarComo);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/puerta-de-salida_318-48444.jpg"))); // NOI18N
         jMenuItem5.setText("Salir");
@@ -224,9 +231,9 @@ public class vista extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        menuPArchivo.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuPArchivo);
 
         jMenu3.setText("Run forest run");
 
@@ -280,11 +287,11 @@ public class vista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonCorrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -296,10 +303,10 @@ public class vista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCorrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -329,7 +336,8 @@ public class vista extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void abrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirArchivoActionPerformed
+        seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
             archivoAbierto=archivo;
@@ -342,77 +350,49 @@ public class vista extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Este Archivo no pertenece a este lenguaje");
             }
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_abrirArchivoActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       if(seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION){
-            archivo=seleccionar.getSelectedFile();
-            
-            if(archivo.getName().endsWith("txt")){
-                String Documento=codigoPrincipal.getText();
-                String mensaje=GuardarArchivo(archivo,Documento);
-                if(mensaje!=null){
-                    JOptionPane.showMessageDialog(null, mensaje);
-                } else{
-                    JOptionPane.showMessageDialog(null, mensaje);
-                }
-                    
-            }
-        }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    private void guardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarComoActionPerformed
+            guardarComo();
+    }//GEN-LAST:event_guardarComoActionPerformed
 
     private void guardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarArchivoActionPerformed
-        
-            
-            
-                String Documento=codigoPrincipal.getText();
-                String mensaje=GuardarArchivo(archivo,Documento);
-                if(mensaje!=null){
-                    JOptionPane.showMessageDialog(null, mensaje);
-                } else{
-                    JOptionPane.showMessageDialog(null, mensaje);
-                }
-                    
-            
-        
+                       guardarPantalla();
+             
     }//GEN-LAST:event_guardarArchivoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
 guardarPantalla();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(seleccionar.showDialog(null, "Guardar")==JFileChooser.APPROVE_OPTION){
-            archivo=seleccionar.getSelectedFile();
-            
-            if(archivo.getName().endsWith("txt")){
-                String Documento=codigoPrincipal.getText();
-                String mensaje=GuardarArchivo(archivo,Documento);
-                if(mensaje!=null){
-                    JOptionPane.showMessageDialog(null, mensaje);
-                } else{
-                    JOptionPane.showMessageDialog(null, mensaje);
-                }
-                    
-            }
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarComoActionPerformed
+        guardarComo();
+    }//GEN-LAST:event_botonGuardarComoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void botonCorrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCorrerActionPerformed
         guardarPantalla();
-        jEditorPane2.setText(tokenizar());        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        try {
+            jEditorPane2.setText(tokenizar());        // TODO add your handling code here:
+        } catch (IOException ex) {
+            Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonCorrerActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         guardarPantalla();
-        jEditorPane2.setText(tokenizar());
+        try {
+            jEditorPane2.setText(tokenizar());
+        } catch (IOException ex) {
+            Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
             archivoAbierto=archivo;
@@ -466,34 +446,79 @@ guardarPantalla();
         });
     }
    // throws IOException
-  public void guardarPantalla(){  
-String Documento=codigoPrincipal.getText().toLowerCase();
+    public void guardarComo(){
+         seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
+        if(seleccionar.showDialog(null, "Guardar como")==JFileChooser.APPROVE_OPTION){
+              archivo=seleccionar.getSelectedFile();
+              seleccionar.setName(archivo.getName()+".btl");
+              archivo=seleccionar.getSelectedFile();
+            
+               if(archivo.getName().endsWith("btl")){
+                String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
                 if(mensaje!=null){
                     JOptionPane.showMessageDialog(null, mensaje);
                 } else{
                     JOptionPane.showMessageDialog(null, mensaje);
-                }       
+                }
+                    
+            }
+        } 
+    }
+    
+  public void guardarPantalla(){ 
+      if (!Abierto){
+               seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
+            if(seleccionar.showDialog(null, "Guardar") ==JFileChooser.APPROVE_OPTION){
+                archivo=seleccionar.getSelectedFile();  
+               String Documento=codigoPrincipal.getText().toLowerCase();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje); 
+                }
+
+               } 
+            } else {
+                  archivo=seleccionar.getSelectedFile();
+                String Documento=codigoPrincipal.getText().toLowerCase();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    //JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje); 
+                }
+     }
+         
+           
   }
-public String tokenizar(){
-       
-            
+
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public String tokenizar() throws FileNotFoundException, IOException{
+         String resultado="";
+        String textoFormateado=""; 
         Reader lector = new BufferedReader(new FileReader(archivo));
         Lexer lexer = new Lexer (lector);
         
          jEditorPane2.setContentType("text/html");
-        String resultado="";
-        String textoFormateado="";
+         //codigoPrincipal.setContentType("text/html");
+        
         while (true){
-            Token token =lexer.yylex();            
+            Token token=lexer.yylex();            
             if (token == null){
-                            
+             //codigoPrincipal.setText(textoFormateado);            
                 return resultado;
             }     
                 switch (token){
                 case SUMA:
                     resultado=resultado+ "<font color=\"gray\">+ Simbolo SUMA</font><br>";
-                    textoFormateado=textoFormateado+"+";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTA:
                     resultado=resultado+ "<font color=\"gray\">- Simbolo Menos</font><br>";
@@ -512,76 +537,80 @@ public String tokenizar(){
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
-                    resultado=resultado+ lexer.lexeme+ " Simbolo desconocido<br>";
+                    resultado=resultado+ lexer.lexeme+ " <font color=\"red\">Simbolo desconocido<br>";
                    textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
                     break;
                 case TEXTO:                    
-                    resultado=resultado+ lexer.lexeme  + " Texto<br>";
+                    resultado=resultado+ "<font color=\"blue\">"+lexer.lexeme+" <font color=\"blue\">Texto</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
-                    resultado=resultado+ lexer.lexeme + "<font color=\"green\"> Entero<br></font>";
-                    
+                    resultado=resultado+ "<font color=\"green\">"+lexer.lexeme +" Entero<br></font>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;
                 case BINT:
-                    resultado=resultado+ "bint Palabra reservada<br>";
+                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
                     break;
                 case BDOUBLE:
-                    resultado=resultado+ "bdouble Palabra reservada<br>";
+                    resultado=resultado+ "<font color=\"white\">bdouble Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
                     break; 
                 case BFLOAT:
-                    resultado=resultado+ "bint Palabra reservada<br>";
+                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
                     break; 
                 case BCHAR:
-                    resultado=resultado+ "bchar Palabra reservada<br>";
+                    resultado=resultado+ "<font color=\"white\">bchar Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
                     break;      
                case BBYTE:
-                    resultado=resultado+ "bint Palabra reservada<br>";
+                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
                     break;   
                 case PARENTESISD:
-                    resultado=resultado+ ") Parentesis Derecho<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+")"+"</font>";
+                    resultado=resultado+ "<font color=\"white\">) Parentesis Derecho</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+")"+"</font>";
                     break;  
                 case PARENTESISI:
-                    resultado=resultado+ "( Parentesis Izquierdo<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+"("+"</font>";
+                    resultado=resultado+ "<font color=\"white\">( Parentesis Izquierdo</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+"("+"</font>";
                     break; 
                 case INICIOB:
-                    resultado=resultado+ "{ Inicio de Bloque<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+"{"+"</font>";
+                    resultado=resultado+ "<font color=\"white\">{ Inicio de Bloque</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+"{"+"</font>";
                     break;     
                 case FINALB:
-                    resultado=resultado+ "} Final de Bloque<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+"}"+"</font>";
+                    resultado=resultado+ "<font color=\"white\">} Final de Bloque</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+"}"+"</font>";
                     break;
               case COMILLAD:
-                    resultado=resultado+ "Comilla Doble<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0022"+"</font>";
+                    resultado=resultado+ "<font color=\"white\">Comilla Doble</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+"\\u0022"+"</font>";
                     break;  
               case COMILLAS:
-                    resultado=resultado+ "Comilla Simple<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0027"+"</font>";
+                    resultado=resultado+ "<font color=\"white\">Comilla Simple</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+"\\u0027"+"</font>";
                     break;  
               case FLOAT:
-                    resultado=resultado+ lexer.lexeme+ " Numero Flotante<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme+" Numero Flotante<br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;   
               case OBJETO:
-                    resultado=resultado+ lexer.lexeme+ " OBJETO<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    resultado=resultado+ "<font color=\"white\"> OBJETO</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
               case EVENTO:
-                    resultado=resultado+ lexer.lexeme+ " EVENTO<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    resultado=resultado+ lexer.lexeme+ "<font color=\"white\"> EVENTO</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;  
                case ESPACIO:
-                    resultado=resultado+ lexer.lexeme+ " EVENTO<br>";
-                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    resultado=resultado+ lexer.lexeme+ "<font color=\"white\"> ESPACIO</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break; 
+                case HTML:
+                    resultado=resultado+ "<font color=\"orange\">"+lexer.lexeme+"HTML</font><br>";
+                    //textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;     
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
@@ -591,16 +620,17 @@ public String tokenizar(){
         
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem abrirArchivo;
+    private javax.swing.JButton botonCorrer;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonGuardarComo;
     private javax.swing.JEditorPane codigoPrincipal;
     private javax.swing.JMenuItem guardarArchivo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem guardarComo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JEditorPane jEditorPane2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -610,10 +640,9 @@ public String tokenizar(){
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenu menuPArchivo;
     // End of variables declaration//GEN-END:variables
 }

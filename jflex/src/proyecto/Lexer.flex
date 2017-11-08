@@ -15,7 +15,7 @@ public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
-
+{ESPACIO} {/*Ignore*/}
 "bint" {return BINT;}
 "bdouble" {return BDOUBLE;}
 "bfloat" {return BFLOAT;}
@@ -57,8 +57,8 @@ public String lexeme;
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
-("(-"{D}+")")|{D}+ {lexeme=yytext(); return INT;}
-(("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
+("-"|{ESPACIO}){D}+ {lexeme=yytext(); return INT;}
+("-"|{ESPACIO}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
 ("bint"|"bfloat"|"bbyte")
 . {lexeme=yytext(); return ERROR;}
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
