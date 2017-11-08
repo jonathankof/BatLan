@@ -51,7 +51,7 @@ public String lexeme;
 "&&" {return AND;}
 "^" {return POW;}
 "||" {return OR;}
-"PR" {return PR;}
+
 "EVENTO" {return EVENTO;}
 "OBJETO" {return OBJETO;}
 "\u0022" {return COMILLAD;}

@@ -115,12 +115,13 @@ public class vista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BatLan");
 
-        codigoPrincipal.setBackground(new java.awt.Color(0, 0, 0));
-        codigoPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        codigoPrincipal.setBackground(new java.awt.Color(0, 191, 255));
+        codigoPrincipal.setForeground(new java.awt.Color(13, 0, 159));
         codigoPrincipal.setCaretColor(new java.awt.Color(255, 255, 255));
+        codigoPrincipal.setSelectedTextColor(new java.awt.Color(13, 0, 159));
         jScrollPane1.setViewportView(codigoPrincipal);
 
-        jEditorPane2.setBackground(new java.awt.Color(0, 0, 0));
+        jEditorPane2.setBackground(new java.awt.Color(0, 191, 255));
         jEditorPane2.setForeground(new java.awt.Color(255, 255, 255));
         jEditorPane2.setCaretColor(new java.awt.Color(255, 255, 255));
         jEditorPane2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
@@ -545,7 +546,7 @@ guardarPantalla();
                    textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
                     break;
                 case TEXTO:                    
-                    resultado=resultado+ "<font color=\"blue\">"+lexer.lexeme+" <font color=\"blue\">Texto</font><br>";
+                    resultado=resultado+ "<font color=\"#0d009f\">"+lexer.lexeme+" Texto</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
