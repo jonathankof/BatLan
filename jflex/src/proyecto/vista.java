@@ -5,9 +5,17 @@
  */
 package proyecto;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -461,7 +469,124 @@ String Documento=codigoPrincipal.getText();
             }
         });
     }
-
+public void tokenizar() throws IOException{
+      
+    
+        String texto=codigoPrincipal.getText();
+        String texto2=texto.toLowerCase();
+         
+        File archivo = new File ("archivo.txt");
+        PrintWriter writer;
+        try {            
+            writer = new PrintWriter(archivo);
+            writer.print(texto2);
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+        Lexer lexer;
+        Reader lector2=lector;
+        lexer = new Lexer (lector);
+        
+         jEditorPane2.setContentType("text/html");
+        String resultado="";
+        String textoFormateado="";
+        while (true){
+            Token token =lexer.yylex();            
+            if (token == null){
+               jEditorPane2.setText(resultado);
+               
+                return;
+            }     
+                switch (token){
+                case SUMA:
+                    resultado=resultado+ "<font color=\"gray\">+ Simbolo SUMA</font><br>";
+                    textoFormateado=textoFormateado+"+";
+                    break;
+                case RESTA:
+                    resultado=resultado+ "<font color=\"gray\">- Simbolo Menos</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">-</font>";
+                    break;
+                case MULTIPLICACION:
+                    resultado=resultado+ "<font color=\"gray\">* Simbolo Multiplicacion</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">*</font>";
+                    break;
+                case DIVISION:
+                    resultado=resultado+ "<font color=\"gray\">/ Simbolo Division</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
+                    break;
+                case ASIGNACION:
+                    resultado=resultado+ "<font color=\"gray\">= Simbolo Asignacion</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
+                    break;
+                case ERROR:
+                    resultado=resultado+ lexer.lexeme+ " Simbolo desconocido<br>";
+                   textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
+                    break;
+                case TEXTO:                    
+                    resultado=resultado+ lexer.lexeme  + " Texto<br>";
+                    textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
+                    break;                
+                case INT:
+                    resultado=resultado+ lexer.lexeme + "<font color=\"green\"> Entero<br></font>";
+                    
+                    break;
+                case BINT:
+                    resultado=resultado+ "bint Palabra reservada<br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
+                    break;
+                case BDOUBLE:
+                    resultado=resultado+ "bdouble Palabra reservada<br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
+                    break; 
+                case BFLOAT:
+                    resultado=resultado+ "bint Palabra reservada<br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
+                    break; 
+                case BCHAR:
+                    resultado=resultado+ "bchar Palabra reservada<br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
+                    break;      
+               case BBYTE:
+                    resultado=resultado+ "bint Palabra reservada<br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
+                    break;   
+                case PARENTESISD:
+                    resultado=resultado+ ") Parentesis Derecho<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+")"+"</font>";
+                    break;  
+                case PARENTESISI:
+                    resultado=resultado+ "( Parentesis Izquierdo<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"("+"</font>";
+                    break; 
+                case INICIOB:
+                    resultado=resultado+ "{ Inicio de Bloque<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"{"+"</font>";
+                    break;     
+                case FINALB:
+                    resultado=resultado+ "} Final de Bloque<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"}"+"</font>";
+                    break;
+              case COMILLAD:
+                    resultado=resultado+ "Comilla Doble<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0022"+"</font>";
+                    break;  
+              case COMILLAS:
+                    resultado=resultado+ "Comilla Simple<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+"\\u0027"+"</font>";
+                    break;  
+              case FLOAT:
+                    resultado=resultado+ lexer.lexeme+ " Numero Flotante<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    break;       
+                default:
+                    resultado=resultado+ "<"+ lexer.lexeme + "> ";
+            }
+    }
+     
+        
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane codigoPrincipal;
     private javax.swing.JButton jButton1;
