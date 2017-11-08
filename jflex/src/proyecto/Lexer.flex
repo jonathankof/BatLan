@@ -9,7 +9,7 @@ PR=[PI/euler/Fi/StepByStep/blong/here/MsgWarning/main/private/public/import/if/t
 OBJETO=[asm/arm/leg/shoulder/lights()/vehicle/weapon]
 EVENTO=[event/left/right/listener/up/down/jump/walk/alfred/mrj/climb/carry]
 WHITE=\n|\r|\t|\r\n
-ESPACIO=" "
+ESPACIO=[ \n]
 %{
 public String lexeme;
 %}

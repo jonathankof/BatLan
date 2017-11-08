@@ -467,6 +467,7 @@ guardarPantalla();
     }
     
   public void guardarPantalla(){ 
+      try {
       if (!Abierto){
                seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
             if(seleccionar.showDialog(null, "Guardar") ==JFileChooser.APPROVE_OPTION){
@@ -491,7 +492,9 @@ guardarPantalla();
                 }
      }
          
-           
+      }catch(Exception e){
+          
+      }
   }
 
     /**
@@ -501,6 +504,7 @@ guardarPantalla();
      * @throws IOException
      */
     public String tokenizar() throws FileNotFoundException, IOException{
+        try{
          String resultado="";
         String textoFormateado=""; 
         Reader lector = new BufferedReader(new FileReader(archivo));
@@ -616,7 +620,10 @@ guardarPantalla();
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
     }
-     
+        }catch(Exception e){
+            
+        }
+        return null;
         
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
