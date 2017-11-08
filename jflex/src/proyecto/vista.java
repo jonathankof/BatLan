@@ -409,11 +409,11 @@ String Documento=codigoPrincipal.getText();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+tokenizar();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+tokenizar();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -469,7 +469,8 @@ String Documento=codigoPrincipal.getText();
             }
         });
     }
-public void tokenizar() throws IOException{
+   // throws IOException
+public void tokenizar(){
       
     
         String texto=codigoPrincipal.getText();
@@ -579,7 +580,19 @@ public void tokenizar() throws IOException{
               case FLOAT:
                     resultado=resultado+ lexer.lexeme+ " Numero Flotante<br>";
                     textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
-                    break;       
+                    break;   
+              case OBJETO:
+                    resultado=resultado+ lexer.lexeme+ " OBJETO<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    break; 
+              case EVENTO:
+                    resultado=resultado+ lexer.lexeme+ " EVENTO<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    break;  
+               case ESPACIO:
+                    resultado=resultado+ lexer.lexeme+ " EVENTO<br>";
+                    textoFormateado=textoFormateado+"<font color=\"black\">"+lexer.lexeme+"</font>";
+                    break;     
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }

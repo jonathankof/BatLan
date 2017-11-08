@@ -15,7 +15,7 @@ public String lexeme;
 %}
 %%
 {WHITE} {/*Ignore*/}
-{ESPACIO}{//ignorrrr }
+
 "bint" {return BINT;}
 "bdouble" {return BDOUBLE;}
 "bfloat" {return BFLOAT;}
@@ -61,5 +61,5 @@ public String lexeme;
 (("-"{D}|{D})("."){D}*) {lexeme=yytext(); return FLOAT;} 
 ("bint"|"bfloat"|"bbyte")
 . {lexeme=yytext(); return ERROR;}
-"<"({L}|{D}|{ESPACIO})*">" {lexeme=yytext(); return HTML; }
-"/*"({L}|{D}|{ESPACIO})*"*/" {lexeme=yytext(); return COMENTARIO; }
+"<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
+"/*"({L}|{D}|{WHITE})*"*/" {lexeme=yytext(); return COMENTARIO; }

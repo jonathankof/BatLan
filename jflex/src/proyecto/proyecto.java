@@ -18,7 +18,7 @@ public class proyecto {
      */
     public static void main(String[] args) {
         new vista().setVisible(true);
-        String archivo=(new File (".").getAbsolutePath());
+        String archivo=(new File ("").getAbsolutePath());
         String ruta=archivo+"/src/proyecto/Lexer.flex";
         generadorlexico(ruta);
     }
