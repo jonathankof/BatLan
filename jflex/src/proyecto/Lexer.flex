@@ -5,17 +5,17 @@ import static proyecto.Token.*;
 %type Token
 L = [a-zA-Z_]
 D = [0-9]
-PR=[PI/euler/Fi/StepByStep/blong/here/MsgWarning/main/private/public/import/if/then/else/try/except/while/for/do/case/Switch/true/false/]
-OBJETO=[asm/arm/leg/shoulder/lights()/vehicle/weapon]
-EVENTO=[event/left/right/listener/up/down/jump/walk/alfred/mrj/climb/carry]
-WHITE=\n|\r|\t|\r\n
-ESPACIO=[ \n]
+PR=[PI""euler""Fi""StepByStep""blong""here""MsgWarning""main""private""public""import""if""then""else""try""except""while""for""do""case""Switch""true""false""]
+OBJETO=[asm""arm""leg""shoulder""lights()""vehicle""weapon]
+EVENTO=[event""left""right""listener""up""down""jump""walk""alfred""mrj""climb""carry]
+WHITE=[\ \r\t\r\n]
+ESPACIO=" "
 %{
 public String lexeme;
 %}
 %%
-{WHITE} {/*Ignore*/}
-{ESPACIO} {/*Ignore*/}
+{WHITE} {""*Ignore*""}
+{ESPACIO} {""*Ignore*""}
 "bint" {return BINT;}
 "bdouble" {return BDOUBLE;}
 "bfloat" {return BFLOAT;}
@@ -40,13 +40,13 @@ public String lexeme;
 "+" {return SUMA;}
 "*" {return MULTIPLICACION;}
 "-" {return RESTA;}
-"/" {return DIVISION;}
+"""" {return DIVISION;}
 "&" {return ASPERSON;}
 "!" {return NOT;}
 "+=" {return SUMAM;}
 "-=" {return RESTAM;}
 "*=" {return MULTIPLICACIONM;}
-"/=" {return DIVISIONM;}
+"""=" {return DIVISIONM;}
 "!=" {return DIFERENTE;}
 "&&" {return AND;}
 "^" {return POW;}
@@ -57,9 +57,33 @@ public String lexeme;
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
-("-"|{ESPACIO}){D}+ {lexeme=yytext(); return INT;}
-("-"|{ESPACIO}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
+("-"|{WHITE}){D}+ {lexeme=yytext(); return INT;}
+("-"|{WHITE}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
 ("bint"|"bfloat"|"bbyte")
-. {lexeme=yytext(); return ERROR;}
+
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
-"/*"({L}|{D}|{WHITE})*"*/" {lexeme=yytext(); return COMENTARIO; }
+"""*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
+. {lexeme=yytext(); return ERROR;}
+"PI"
+"euler"
+"Fi"
+"StepByStep"
+"blong"
+"here"
+"MsgWarning"
+"main"
+"private"
+"public"
+"import"
+"if"
+"then"
+"else"
+"try"
+"except"
+"while"
+"for"
+"do"
+"case"
+"Switch"
+"true"
+"false"
