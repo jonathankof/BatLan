@@ -61,7 +61,7 @@ public class vista extends javax.swing.JFrame {
             salida.write(ward);
             mensaje="Este archivo fue guardado";
         }catch(Exception e){
-            
+            mensaje="Hay un problema:"+e.toString();
         }
         
         return mensaje;
@@ -92,7 +92,7 @@ public class vista extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        guardarArchivo = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -122,7 +122,7 @@ public class vista extends javax.swing.JFrame {
         jEditorPane2.setPreferredSize(new java.awt.Dimension(10, 20));
         jScrollPane2.setViewportView(jEditorPane2);
 
-        jButton1.setAction(jMenuItem4.getAction());
+        jButton1.setAction(guardarArchivo.getAction());
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
         jButton1.setPreferredSize(new java.awt.Dimension(25, 25));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,15 +197,15 @@ public class vista extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
-        jMenuItem4.setText("Guardar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        guardarArchivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        guardarArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/guardar-opcion-de-archivo_318-41914.jpg"))); // NOI18N
+        guardarArchivo.setText("Guardar");
+        guardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                guardarArchivoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(guardarArchivo);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/save_3621.png"))); // NOI18N
@@ -361,7 +361,7 @@ public class vista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void guardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarArchivoActionPerformed
         
             
             
@@ -375,16 +375,10 @@ public class vista extends javax.swing.JFrame {
                     
             
         
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_guardarArchivoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String Documento=codigoPrincipal.getText();
-                String mensaje=GuardarArchivo(archivo,Documento);
-                if(mensaje!=null){
-                    JOptionPane.showMessageDialog(null, mensaje);
-                } else{
-                    JOptionPane.showMessageDialog(null, mensaje);
-                }        // TODO add your handling code here:
+guardarPantalla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -409,11 +403,13 @@ String Documento=codigoPrincipal.getText();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-tokenizar();        // TODO add your handling code here:
+        guardarPantalla();
+        jEditorPane2.setText(tokenizar());        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-tokenizar();        // TODO add your handling code here:
+        guardarPantalla();
+        jEditorPane2.setText(tokenizar());
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -470,25 +466,20 @@ tokenizar();        // TODO add your handling code here:
         });
     }
    // throws IOException
-public void tokenizar(){
-      
-    
-        String texto=codigoPrincipal.getText();
-        String texto2=texto.toLowerCase();
-         
-        File archivo = new File ("archivo.txt");
-        PrintWriter writer;
-        try {            
-            writer = new PrintWriter(archivo);
-            writer.print(texto2);
-            writer.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(vista.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-        Reader lector = new BufferedReader(new FileReader("archivo.txt"));
-        Lexer lexer;
-        Reader lector2=lector;
-        lexer = new Lexer (lector);
+  public void guardarPantalla(){  
+String Documento=codigoPrincipal.getText().toLowerCase();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje);
+                }       
+  }
+public String tokenizar(){
+       
+            
+        Reader lector = new BufferedReader(new FileReader(archivo));
+        Lexer lexer = new Lexer (lector);
         
          jEditorPane2.setContentType("text/html");
         String resultado="";
@@ -496,9 +487,8 @@ public void tokenizar(){
         while (true){
             Token token =lexer.yylex();            
             if (token == null){
-               jEditorPane2.setText(resultado);
-               
-                return;
+                            
+                return resultado;
             }     
                 switch (token){
                 case SUMA:
@@ -602,6 +592,7 @@ public void tokenizar(){
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane codigoPrincipal;
+    private javax.swing.JMenuItem guardarArchivo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -620,7 +611,6 @@ public void tokenizar(){
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
