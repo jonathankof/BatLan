@@ -14,17 +14,43 @@ ESPACIO=" "
 public String lexeme;
 %}
 %%
-{WHITE} {""*Ignore*""}
-{ESPACIO} {""*Ignore*""}
-"bint" {return PR;}
-"bdouble" {return PR;}
-"bfloat" {return PR;}
-"bstring" {return PR;}
-"bchar" {return PR;}
-"bfloat" {return PR;}
-"bshort" {return PR;}
-"bbyte" {return PR;}
-"bint[]" {return PR;}
+{WHITE} {/*Ignore*/}
+{ESPACIO} {/*Ignore*/}
+/*Palabras reservadas*/
+
+"bint" {lexeme=yytext(); return PR;}
+"bdouble" {lexeme=yytext(); return PR;}
+"bfloat" {lexeme=yytext(); return PR;}
+"bstring" {lexeme=yytext(); return PR;}
+"bchar" {lexeme=yytext(); return PR;}
+"bfloat" {lexeme=yytext(); return PR;}
+"bshort" {lexeme=yytext(); return PR;}
+"bbyte" {lexeme=yytext(); return PR;}
+"bint[]" {lexeme=yytext(); return PR;}
+
+"PI" {lexeme=yytext(); return PR; }
+"euler" {lexeme=yytext(); return PR; }
+"Fi" {lexeme=yytext(); return PR; }
+"StepByStep" {lexeme=yytext(); return PR; }
+"blong" {lexeme=yytext(); return PR; }
+"here" {lexeme=yytext(); return PR; }
+"MsgWarning" {lexeme=yytext(); return PR; }
+"main" {lexeme=yytext(); return PR; }
+"private" {lexeme=yytext(); return PR; }
+"public" {lexeme=yytext(); return PR; }
+"import" {lexeme=yytext(); return PR; }
+"if" {lexeme=yytext(); return PR; }
+"then" {lexeme=yytext(); return PR; }
+"else" {lexeme=yytext(); return PR; }
+"try" {lexeme=yytext(); return PR; }
+"except" {lexeme=yytext(); return PR; }
+"while" {lexeme=yytext(); return PR; }
+"for" {lexeme=yytext(); return PR; }
+"do" {lexeme=yytext(); return PR; }
+"case" {lexeme=yytext(); return PR; }
+"Switch" {lexeme=yytext(); return PR; }
+"true" {lexeme=yytext(); return PR; }
+"false" {lexeme=yytext(); return PR; }
 "@" {return DIRECTIVAS;}
 "%" {return MODULO;}
 ">" {return ANGLED;}
@@ -59,14 +85,8 @@ public String lexeme;
 "\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
 ("-"|{WHITE}){D}+ {lexeme=yytext(); return INT;}
 ("-"|{WHITE}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
-("bint"|"bfloat"|"bbyte")
 
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
 """*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
 . {lexeme=yytext(); return ERROR;}
-"PI" {lexeme=yytext(); return PR; }
-"euler" {lexeme=yytext(); return PR; }
-"Fi" {lexeme=yytext(); return PR; }
-"StepByStep" {lexeme=yytext(); return PR; }
-"blong" {lexeme=yytext(); return PR; }
-"here" {lexeme=yytext(); return PR; }
+

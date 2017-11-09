@@ -552,26 +552,10 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\"green\">"+lexer.lexeme +" Entero<br></font>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;
-                case BINT:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
-                    break;
-                case BDOUBLE:
-                    resultado=resultado+ "<font color=\"white\">bdouble Palabra reservada</font><br>";
+                case PR:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
                     break; 
-                case BFLOAT:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
-                    break; 
-                case BCHAR:
-                    resultado=resultado+ "<font color=\"white\">bchar Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
-                    break;      
-               case BBYTE:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
-                    break;   
                 case PARENTESISD:
                     resultado=resultado+ "<font color=\"white\">) Parentesis Derecho</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+")"+"</font>";
