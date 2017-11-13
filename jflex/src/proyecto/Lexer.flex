@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package proyecto;
 import static proyecto.Token.*;
 %%
@@ -26,10 +25,7 @@ public String lexeme;
 "bshort" {lexeme=yytext(); return PR;}
 "bbyte" {lexeme=yytext(); return PR;}
 "bint[]" {lexeme=yytext(); return PR;}
-"PI" {lexeme=yytext(); return PR; }
-"euler" {lexeme=yytext(); return PR; }
-"Fi" {lexeme=yytext(); return PR; }
-"StepByStep" {lexeme=yytext(); return PR; }
+
 "blong" {lexeme=yytext(); return PR; }
 
 "MsgWarning" {lexeme=yytext(); return PR; }
@@ -50,12 +46,23 @@ public String lexeme;
 "true" {lexeme=yytext(); return PR; }
 "false" {lexeme=yytext(); return PR; }
 
+/*Constantes*/
+"PI" {lexeme=yytext(); return CONS; }
+"euler" {lexeme=yytext(); return CONS; }
+"Fi" {lexeme=yytext(); return CONS; }
+"StepByStep" {lexeme=yytext(); return CONS; }
+
 /*FUNCION*/
+"sqrt" {lexeme=yytext(); return FUNCION; }
+"pow" {lexeme=yytext(); return FUNCION; }
+"location" {lexeme=yytext(); return FUNCION; }
 "list" {lexeme=yytext(); return FUNCION; }
 "Threads" {lexeme=yytext(); return FUNCION; }
 "defensive" {lexeme=yytext(); return FUNCION; }
 "start" {lexeme=yytext(); return FUNCION; }
 "here" {lexeme=yytext(); return FUNCION; }
+"Error" {lexeme=yytext(); return VAR;}
+"SystemError" {lexeme=yytext(); return VAR;}
 
 /*Evento*/
 "event" {lexeme=yytext(); return EVENTO;}
@@ -92,6 +99,11 @@ public String lexeme;
 "%" {return MODULO;}
 ">" {lexeme=yytext(); return ANGLED;}
 "<" {lexeme=yytext(); return ANGLEI;}
+"^" {lexeme=yytext(); return EXPO;}
+"log2" {lexeme=yytext(); return LOG2;}
+"log10" {lexeme=yytext(); return LOG10;}
+"ln2" {lexeme=yytext(); return LN2;}
+"ln10" {lexeme=yytext(); return LN10;}
 "." {return PUNTO;}
 "," {return COMA;}
 "(" {return PARENTESISI;}
