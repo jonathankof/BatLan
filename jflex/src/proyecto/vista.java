@@ -633,6 +633,63 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\"gray\">. Simbolo PUNTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
+                case DIRECTIVAS:  
+                    resultado=resultado+ "<font color=\"gray\">@ Directivas</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case MODULO: 
+                    resultado=resultado+ "<font color=\"gray\">% Operador: Modulo</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case ANGLED: 
+                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+"Operador: Mayor que</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case ANGLEI:  
+                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+"Operador: Menor que</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                
+                case COMPARACION: 
+                    resultado=resultado+ "<font color=\"gray\"> ==  Operador: Menor que</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case ASPERSON:
+                    resultado=resultado+ "<font color=\"gray\"> &  Operador: Menor que</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case NOT: 
+                    resultado=resultado+ "<font color=\"gray\">Operador: Negación</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case SUMAM: 
+                    resultado=resultado+ "<font color=\"gray\">Operador de suma</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case RESTAM: 
+                    resultado=resultado+ "<font color=\"gray\">Operador de resta</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case MULTIPLICACIONM: 
+                    resultado=resultado+ "<font color=\"gray\">Operador de multiplicación</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case DIVISIONM: 
+                    resultado=resultado+ "<font color=\"gray\"> Operador de división</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case AND: 
+                    resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case POW: 
+                    resultado=resultado+ "<font color=\"gray\">Operador: potencia</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case OR: 
+                    resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
                
             }
     }
