@@ -541,7 +541,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
-                    resultado=resultado+ lexer.lexeme+ " <font color=\"red\">Simbolo desconocido<br>";
+                    resultado=resultado+" <font color=\"red\">"+ lexer.lexeme+" Simbolo desconocido<br>";
                    textoFormateado=textoFormateado+"<font color=\"red\">"+lexer.lexeme+"</font>"; 
                     break;
                 case TEXTO:                    
@@ -632,8 +632,7 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\"gray\">. Simbolo PUNTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
-                default:
-                    resultado=resultado+ "<"+ lexer.lexeme + "> ";
+               
             }
     }
         }catch(Exception e){

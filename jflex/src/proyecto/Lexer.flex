@@ -25,7 +25,6 @@ public String lexeme;
 "bshort" {lexeme=yytext(); return PR;}
 "bbyte" {lexeme=yytext(); return PR;}
 "bint[]" {lexeme=yytext(); return PR;}
-
 "PI" {lexeme=yytext(); return PR; }
 "euler" {lexeme=yytext(); return PR; }
 "Fi" {lexeme=yytext(); return PR; }
@@ -121,8 +120,9 @@ public String lexeme;
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
 """*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")+ {lexeme=yytext(); return VAR;}
-({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return FUNCION;}
-("_"|{L})({L}|{D})+ {lexeme=yytext(); return VAR;} 
-
+({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)?("\u0029") {lexeme=yytext(); return FUNCION;}
+("_"|{L})({L}|{D})* {lexeme=yytext(); return VAR;} 
+/*Error*/
+({D})({L}|{D}|"_")+ {lexeme=yytext(); return ERROR;}
 . {lexeme=yytext(); return ERROR;}
 
