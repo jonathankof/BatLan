@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package proyecto;
 import static proyecto.Token.*;
 %%
@@ -30,7 +31,7 @@ public String lexeme;
 "Fi" {lexeme=yytext(); return PR; }
 "StepByStep" {lexeme=yytext(); return PR; }
 "blong" {lexeme=yytext(); return PR; }
-"here" {lexeme=yytext(); return PR; }
+
 "MsgWarning" {lexeme=yytext(); return PR; }
 "main" {lexeme=yytext(); return PR; }
 "private" {lexeme=yytext(); return PR; }
@@ -48,6 +49,13 @@ public String lexeme;
 "Switch" {lexeme=yytext(); return PR; }
 "true" {lexeme=yytext(); return PR; }
 "false" {lexeme=yytext(); return PR; }
+
+/*FUNCION*/
+"list" {lexeme=yytext(); return FUNCION; }
+"Threads" {lexeme=yytext(); return FUNCION; }
+"defensive" {lexeme=yytext(); return FUNCION; }
+"start" {lexeme=yytext(); return FUNCION; }
+"here" {lexeme=yytext(); return FUNCION; }
 
 /*Evento*/
 "event" {lexeme=yytext(); return EVENTO;}
@@ -82,8 +90,8 @@ public String lexeme;
 
 "@" {return DIRECTIVAS;}
 "%" {return MODULO;}
-">" {return ANGLED;}
-"<" {return ANGLEI;}
+">" {lexeme=yytext(); return ANGLED;}
+"<" {lexeme=yytext(); return ANGLEI;}
 "." {return PUNTO;}
 "," {return COMA;}
 "(" {return PARENTESISI;}
@@ -108,7 +116,6 @@ public String lexeme;
 "^" {return POW;}
 "||" {return OR;}
 "PR" {return PR;}
-
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 
@@ -125,4 +132,3 @@ public String lexeme;
 /*Error*/
 ({D})({L}|{D}|"_")+ {lexeme=yytext(); return ERROR;}
 . {lexeme=yytext(); return ERROR;}
-
