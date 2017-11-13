@@ -555,6 +555,22 @@ guardarPantalla();
                 case PR:
                     resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
+                    break;
+                case LIB:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de libreria</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";          
+                    break; 
+                case VAR:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de variable</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";        
+                    break;
+                case COMA:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de variable</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";       
+                    break; 
+                case DOSP:
+                    resultado=resultado+ "<font color=\"white\">: Dos puntos</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";          
                     break; 
                 case PARENTESISD:
                     resultado=resultado+ "<font color=\"white\">) Parentesis Derecho</font><br>";
@@ -589,7 +605,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
               case EVENTO:
-                    resultado=resultado+ lexer.lexeme+ "<font color=\"white\"> EVENTO</font><br>";
+                    resultado=resultado+"<font color=\"white\"> EVENTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;  
                case ESPACIO:
@@ -599,7 +615,19 @@ guardarPantalla();
                 case HTML:
                     resultado=resultado+ "<font color=\"orange\">"+lexer.lexeme+"HTML</font><br>";
                     //textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
-                    break;     
+                    break;
+                case DIFERENTE:
+                    resultado=resultado+"<font color=\"white\">!= Diferente</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break; 
+                 case OPERA:
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" Operacion</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break;    
+                 case FUNCION:
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" FUNCION</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break; 
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }

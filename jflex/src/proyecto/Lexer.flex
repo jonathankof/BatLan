@@ -51,6 +51,14 @@ public String lexeme;
 "Switch" {lexeme=yytext(); return PR; }
 "true" {lexeme=yytext(); return PR; }
 "false" {lexeme=yytext(); return PR; }
+
+/*Librerias*/
+"situations" {lexeme=yytext(); return LIB;}
+"threading" {lexeme=yytext(); return LIB;}
+"defense" {lexeme=yytext(); return LIB;}
+
+
+
 "@" {return DIRECTIVAS;}
 "%" {return MODULO;}
 ">" {return ANGLED;}
@@ -62,6 +70,7 @@ public String lexeme;
 "{" {return INICIOB;}
 "}" {return FINALB;}
 "=" {return ASIGNACION;}
+":" {return DOSP;}
 "==" {return COMPARACION;}
 "+" {return SUMA;}
 "*" {return MULTIPLICACION;}
@@ -72,7 +81,7 @@ public String lexeme;
 "+=" {return SUMAM;}
 "-=" {return RESTAM;}
 "*=" {return MULTIPLICACIONM;}
-"""=" {return DIVISIONM;}
+"/=" {return DIVISIONM;}
 "!=" {return DIFERENTE;}
 "&&" {return AND;}
 "^" {return POW;}
@@ -82,11 +91,17 @@ public String lexeme;
 "OBJETO" {return OBJETO;}
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
-"\u0022"({L}|{D}|{WHITE})*"\u0022" {lexeme=yytext(); return TEXTO;}
+
+/*EBNF*/
+"\u0022"({L}|{D}|{WHITE}|"."|","|"*"|"/"|":"|"="|"<"|">"|";")*"\u0022" {lexeme=yytext(); return TEXTO;}
 ("-"|{WHITE}){D}+ {lexeme=yytext(); return INT;}
 ("-"|{WHITE}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
-
+({L}+)("."|":")({L}+) {lexeme=yytext(); return OPERA;} 
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
 """*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
+("_"|{L})({L}|{D})+ {lexeme=yytext(); return VAR;}
+({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")({D}*)("\u0029") {lexeme=yytext(); return FUNCION;}
+("_"|{L})({L}|{D})+ {lexeme=yytext(); return VAR;} 
+
 . {lexeme=yytext(); return ERROR;}
 
