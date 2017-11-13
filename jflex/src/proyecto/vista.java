@@ -553,26 +553,26 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\"green\">"+lexer.lexeme +" Entero<br></font>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;
-                case BINT:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bint"+"</font>";
-                    break;
-                case BDOUBLE:
-                    resultado=resultado+ "<font color=\"white\">bdouble Palabra reservada</font><br>";
+                case PR:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
+                    break;
+                case LIB:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de libreria</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";          
                     break; 
-                case BFLOAT:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bfloat"+"</font>";
+                case VAR:
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de variable</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";        
+                    break;
+                case COMA:
+                    resultado=resultado+ "<font color=\"white\">, Simbolo COMA</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";       
                     break; 
-                case BCHAR:
-                    resultado=resultado+ "<font color=\"white\">bchar Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bchar"+"</font>";
-                    break;      
-               case BBYTE:
-                    resultado=resultado+ "<font color=\"white\">bint Palabra reservada</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bbyte"+"</font>";
-                    break;   
+                case DOSP:
+                    resultado=resultado+ "<font color=\"white\">: Dos puntos</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";          
+                    break; 
                 case PARENTESISD:
                     resultado=resultado+ "<font color=\"white\">) Parentesis Derecho</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+")"+"</font>";
@@ -602,11 +602,11 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;   
               case OBJETO:
-                    resultado=resultado+ "<font color=\"white\"> OBJETO</font><br>";
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme+" OBJETO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
               case EVENTO:
-                    resultado=resultado+ lexer.lexeme+ "<font color=\"white\"> EVENTO</font><br>";
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" EVENTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;  
                case ESPACIO:
@@ -616,7 +616,23 @@ guardarPantalla();
                 case HTML:
                     resultado=resultado+ "<font color=\"orange\">"+lexer.lexeme+"HTML</font><br>";
                     //textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
-                    break;     
+                    break;
+                case DIFERENTE:
+                    resultado=resultado+"<font color=\"white\">!= Diferente</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break; 
+                 case OPERA:
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" Operacion</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break;    
+                 case FUNCION:
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" FUNCION</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break; 
+                  case PUNTO:
+                    resultado=resultado+ "<font color=\"gray\">. Simbolo PUNTO</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
