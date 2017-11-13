@@ -5,9 +5,7 @@ import static proyecto.Token.*;
 %type Token
 L = [a-zA-Z_]
 D = [0-9]
-PR=[PI""euler""Fi""StepByStep""blong""here""MsgWarning""main""private""public""import""if""then""else""try""except""while""for""do""case""Switch""true""false""]
-OBJETO=[asm""arm""leg""shoulder""lights()""vehicle""weapon]
-EVENTO=[event""left""right""listener""up""down""jump""walk""alfred""mrj""climb""carry]
+
 WHITE=[\ \r\t\r\n]
 ESPACIO=" "
 %{
@@ -52,6 +50,30 @@ public String lexeme;
 "true" {lexeme=yytext(); return PR; }
 "false" {lexeme=yytext(); return PR; }
 
+/*Evento*/
+"event" {lexeme=yytext(); return EVENTO;}
+"left" {lexeme=yytext(); return EVENTO;}
+"right" {lexeme=yytext(); return EVENTO;}
+"listener" {lexeme=yytext(); return EVENTO;}
+"up" {lexeme=yytext(); return EVENTO;}
+"down" {lexeme=yytext(); return EVENTO;}
+"jump" {lexeme=yytext(); return EVENTO;}
+"walk" {lexeme=yytext(); return EVENTO;}
+"alfred" {lexeme=yytext(); return EVENTO;}
+"mrj" {lexeme=yytext(); return EVENTO;}
+"climb" {lexeme=yytext(); return EVENTO;}
+"carry" {lexeme=yytext(); return EVENTO;}
+"under_attack" {lexeme=yytext(); return EVENTO;}
+
+/*OBJETOS*/
+"asm"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"arm"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"leg"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"shoulder"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"lights"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"vehicle"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+"weapon"{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return OBJETO;}
+
 /*Librerias*/
 "situations" {lexeme=yytext(); return LIB;}
 "threading" {lexeme=yytext(); return LIB;}
@@ -87,20 +109,19 @@ public String lexeme;
 "^" {return POW;}
 "||" {return OR;}
 "PR" {return PR;}
-"EVENTO" {return EVENTO;}
-"OBJETO" {return OBJETO;}
+
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 
 /*EBNF*/
-"\u0022"({L}|{D}|{WHITE}|"."|","|"*"|"/"|":"|"="|"<"|">"|";")*"\u0022" {lexeme=yytext(); return TEXTO;}
-("-"|{WHITE}){D}+ {lexeme=yytext(); return INT;}
-("-"|{WHITE}){D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
+"\u0022"(.)*"\u0022" {lexeme=yytext(); return TEXTO;}
+("-")?{D}+ {lexeme=yytext(); return INT;}
+("-")?{D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
 ({L}+)("."|":")({L}+) {lexeme=yytext(); return OPERA;} 
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
 """*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
-("_"|{L})({L}|{D})+ {lexeme=yytext(); return VAR;}
-({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")({D}*)("\u0029") {lexeme=yytext(); return FUNCION;}
+("_"|{L})({L}|{D}|"_")+ {lexeme=yytext(); return VAR;}
+({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)("\u0029") {lexeme=yytext(); return FUNCION;}
 ("_"|{L})({L}|{D})+ {lexeme=yytext(); return VAR;} 
 
 . {lexeme=yytext(); return ERROR;}

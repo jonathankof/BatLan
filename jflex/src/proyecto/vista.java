@@ -565,7 +565,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";        
                     break;
                 case COMA:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de variable</font><br>";
+                    resultado=resultado+ "<font color=\"white\">, Simbolo COMA</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";       
                     break; 
                 case DOSP:
@@ -601,11 +601,11 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;   
               case OBJETO:
-                    resultado=resultado+ "<font color=\"white\"> OBJETO</font><br>";
+                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme+" OBJETO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
               case EVENTO:
-                    resultado=resultado+"<font color=\"white\"> EVENTO</font><br>";
+                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" EVENTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;  
                case ESPACIO:
@@ -628,6 +628,10 @@ guardarPantalla();
                     resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" FUNCION</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
+                  case PUNTO:
+                    resultado=resultado+ "<font color=\"gray\">. Simbolo PUNTO</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
                 default:
                     resultado=resultado+ "<"+ lexer.lexeme + "> ";
             }
