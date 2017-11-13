@@ -453,7 +453,7 @@ guardarPantalla();
               archivo=seleccionar.getSelectedFile();
               seleccionar.setName(archivo.getName()+".btl");
               archivo=seleccionar.getSelectedFile();
-            
+                          
                if(archivo.getName().endsWith("btl")){
                 String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
@@ -688,6 +688,10 @@ guardarPantalla();
                     break;
                 case OR: 
                     resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case CONS:
+                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+" Constante</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                
