@@ -346,12 +346,13 @@ public class vista extends javax.swing.JFrame {
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
             archivoAbierto=archivo;
-                 }
+                            }
         if(archivo.canRead()){
             if(archivo.getName().endsWith("btl")){
                 String documento=AbrirArchivo(archivo);
+                 jEditorPane2.setText("");
                 codigoPrincipal.setText(documento);
-            }else{
+                }else{
                 JOptionPane.showMessageDialog(null,"Este Archivo no pertenece a este lenguaje");
             }
         }
@@ -458,12 +459,7 @@ guardarPantalla();
         if(seleccionar.showDialog(null, "Guardar como")==JFileChooser.APPROVE_OPTION){
               archivo=seleccionar.getSelectedFile();
               seleccionar.setName(archivo.getName()+".btl");
-              String PATH = archivo.getAbsolutePath();
-              if(!(PATH.endsWith(".btl"))){
-                        File temp = new File(PATH+".btl");
-                        archivo.renameTo(temp);
-                    }
-                          
+                                       
                if(archivo.getName().endsWith("btl")){
                 String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
@@ -483,15 +479,7 @@ guardarPantalla();
                seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
             if(seleccionar.showDialog(null, "Guardar") ==JFileChooser.APPROVE_OPTION){
                 archivo=seleccionar.getSelectedFile(); 
-                String PATH = archivo.getAbsolutePath();
-                //JOptionPane.showMessageDialog(null, PATH);
-              if(!(PATH.endsWith(".btl"))){
-                        File nuevo = new File(PATH+".btl");
-                        archivo.renameTo(nuevo);
-                       PATH = archivo.getAbsolutePath(); 
-                    JOptionPane.showMessageDialog(null, PATH);    
-                    }
-               String Documento=codigoPrincipal.getText().toLowerCase();
+                String Documento=codigoPrincipal.getText().toLowerCase();
                 String mensaje=GuardarArchivo(archivo,Documento);
                 if(mensaje!=null){
                     JOptionPane.showMessageDialog(null, mensaje);
