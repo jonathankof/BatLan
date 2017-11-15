@@ -48,7 +48,6 @@ public class vista extends javax.swing.JFrame {
             entrada=new FileInputStream(archivo);
             int ar;
             Abierto=true;
-            setTitle("BatLan "+archivo.getAbsolutePath());
             while((ar=entrada.read())!=-1){
                 char caracter=(char)ar;
                 documento+=caracter;
@@ -60,18 +59,8 @@ public class vista extends javax.swing.JFrame {
     }
     public String GuardarArchivo(File archivo, String documento){
         String mensaje=null;
-        String PATH = archivo.getAbsolutePath();
-             if(!(PATH.endsWith("btl"))){
-                        if (!archivo.exists()){
-                            
-                        }
-                        File temp = new File(PATH+".btl");
-                        archivo.renameTo(temp);
-                        JOptionPane.showMessageDialog(null,"Si entra aqui");
-                    }
+        
         try{
-             
-            
             Abierto=true;
             salida=new FileOutputStream(archivo);
             byte[] ward=documento.getBytes();
@@ -101,18 +90,18 @@ public class vista extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane2 = new javax.swing.JEditorPane();
         botonGuardar = new javax.swing.JButton();
-        botonNuevo = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         botonGuardarComo = new javax.swing.JButton();
         botonCorrer = new javax.swing.JButton();
-        botonAbrir = new javax.swing.JButton();
-        botonSalir = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPArchivo = new javax.swing.JMenu();
-        opcionNuevo = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         abrirArchivo = new javax.swing.JMenuItem();
         guardarArchivo = new javax.swing.JMenuItem();
         guardarComo = new javax.swing.JMenuItem();
-        OpcionSalir = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -126,13 +115,15 @@ public class vista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BatLan");
 
-        codigoPrincipal.setBackground(new java.awt.Color(0, 191, 255));
+        codigoPrincipal.setBackground(new java.awt.Color(140, 140, 140));
+        codigoPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         codigoPrincipal.setForeground(new java.awt.Color(13, 0, 159));
         codigoPrincipal.setCaretColor(new java.awt.Color(255, 255, 255));
         codigoPrincipal.setSelectedTextColor(new java.awt.Color(13, 0, 159));
         jScrollPane1.setViewportView(codigoPrincipal);
 
-        jEditorPane2.setBackground(new java.awt.Color(0, 191, 255));
+        jEditorPane2.setBackground(new java.awt.Color(140, 140, 140));
+        jEditorPane2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jEditorPane2.setForeground(new java.awt.Color(255, 255, 255));
         jEditorPane2.setCaretColor(new java.awt.Color(255, 255, 255));
         jEditorPane2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
@@ -150,12 +141,12 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        botonNuevo.setAction(opcionNuevo.getAction());
-        botonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/nuevo.jpg"))); // NOI18N
-        botonNuevo.setPreferredSize(new java.awt.Dimension(25, 25));
-        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setAction(jMenuItem2.getAction());
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/nuevo.jpg"))); // NOI18N
+        jButton2.setPreferredSize(new java.awt.Dimension(25, 25));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonNuevoActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -177,34 +168,34 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
-        botonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/open-folder-outline_318-41918.jpg"))); // NOI18N
-        botonAbrir.setPreferredSize(new java.awt.Dimension(25, 25));
-        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/open-folder-outline_318-41918.jpg"))); // NOI18N
+        jButton5.setPreferredSize(new java.awt.Dimension(25, 25));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAbrirActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
-        botonSalir.setAction(OpcionSalir.getAction());
-        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/puerta-de-salida_318-48444.jpg"))); // NOI18N
-        botonSalir.setPreferredSize(new java.awt.Dimension(25, 25));
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setAction(jMenuItem5.getAction());
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/puerta-de-salida_318-48444.jpg"))); // NOI18N
+        jButton6.setPreferredSize(new java.awt.Dimension(25, 25));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
 
         menuPArchivo.setText("Archivo");
 
-        opcionNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        opcionNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/nuevo.jpg"))); // NOI18N
-        opcionNuevo.setText("Nuevo ");
-        opcionNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/nuevo.jpg"))); // NOI18N
+        jMenuItem2.setText("Nuevo ");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcionNuevoActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        menuPArchivo.add(opcionNuevo);
+        menuPArchivo.add(jMenuItem2);
 
         abrirArchivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         abrirArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/open-folder-outline_318-41918.jpg"))); // NOI18N
@@ -236,14 +227,14 @@ public class vista extends javax.swing.JFrame {
         });
         menuPArchivo.add(guardarComo);
 
-        OpcionSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/puerta-de-salida_318-48444.jpg"))); // NOI18N
-        OpcionSalir.setText("Salir");
-        OpcionSalir.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/puerta-de-salida_318-48444.jpg"))); // NOI18N
+        jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpcionSalirActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
-        menuPArchivo.add(OpcionSalir);
+        menuPArchivo.add(jMenuItem5);
 
         jMenuBar1.add(menuPArchivo);
 
@@ -295,9 +286,9 @@ public class vista extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,7 +296,7 @@ public class vista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonCorrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(5, 5, 5))
         );
@@ -316,11 +307,11 @@ public class vista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(botonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botonCorrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
@@ -330,17 +321,17 @@ public class vista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void opcionNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionNuevoActionPerformed
-       Nuevo();
-    }//GEN-LAST:event_opcionNuevoActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
-    private void OpcionSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionSalirActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_OpcionSalirActionPerformed
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         AcercadeBATLAN acercadeBATLAN= new AcercadeBATLAN(this, rootPaneCheckingEnabled);
@@ -349,41 +340,37 @@ public class vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void abrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirArchivoActionPerformed
-        Abrir();
-    }//GEN-LAST:event_abrirArchivoActionPerformed
-public void Abrir(){
-    seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
+        seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
         if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
             archivo=seleccionar.getSelectedFile();
             archivoAbierto=archivo;
-                                  }
+                 }
         if(archivo.canRead()){
-            if(archivo.getName().endsWith(".btl")){
+            if(archivo.getName().endsWith("btl")){
                 String documento=AbrirArchivo(archivo);
-                 jEditorPane2.setText("");
                 codigoPrincipal.setText(documento);
-                setTitle("BatLan "+archivo.getAbsolutePath());
-                }else{
+            }else{
                 JOptionPane.showMessageDialog(null,"Este Archivo no pertenece a este lenguaje");
             }
         }
-}
+    }//GEN-LAST:event_abrirArchivoActionPerformed
 
     private void guardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarComoActionPerformed
             guardarComo();
     }//GEN-LAST:event_guardarComoActionPerformed
 
     private void guardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarArchivoActionPerformed
-                       guardarPantalla();   
+                       guardarPantalla();
+             
     }//GEN-LAST:event_guardarArchivoActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
 guardarPantalla();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
-    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-      Nuevo();
-    }//GEN-LAST:event_botonNuevoActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarComoActionPerformed
         guardarComo();
@@ -407,23 +394,26 @@ guardarPantalla();
         }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
-        Abrir();
-    }//GEN-LAST:event_botonAbrirActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
+        if(seleccionar.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
+            archivo=seleccionar.getSelectedFile();
+            archivoAbierto=archivo;
+                 }
+        if(archivo.canRead()){
+            if(archivo.getName().endsWith("btl")){
+                String documento=AbrirArchivo(archivo);
+                codigoPrincipal.setText(documento);
+            }else{
+                JOptionPane.showMessageDialog(null,"Este Archivo no pertenece a este lenguaje");
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        Salir();
-    }//GEN-LAST:event_botonSalirActionPerformed
-
-    public void Salir(){
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.exit(0);
-    }
-    public void Nuevo(){   
-       jEditorPane2.setText("");
-       codigoPrincipal.setText("");
-       Abierto=false;
-       
-    }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -463,59 +453,42 @@ guardarPantalla();
          seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
         if(seleccionar.showDialog(null, "Guardar como")==JFileChooser.APPROVE_OPTION){
               archivo=seleccionar.getSelectedFile();
-              String PATH = archivo.getAbsolutePath();
-              if(!(PATH.endsWith(".btl"))){
-                        File temp = new File(PATH+".btl");
-                        archivo.renameTo(temp);
-                    }
-              
-              
-                if(archivo.exists()){
-                if(JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this,"El archivo ya existe,¿deseas reemplazarlo?","Reescribir",JOptionPane.YES_NO_OPTION)){
-                            String Documento=codigoPrincipal.getText().toLowerCase();
-                            String mensaje=GuardarArchivo(archivo,Documento);
-                            if(mensaje!=null){
-                                setTitle("BatLan "+archivo.getAbsolutePath());
-                                //JOptionPane.showMessageDialog(null, mensaje);
-                            } else{
-                                JOptionPane.showMessageDialog(null, mensaje);
-                            }
-                        
-                 }                       
-               
-                    
-            }else {
-                           String Documento=codigoPrincipal.getText().toLowerCase();
-                            String mensaje=GuardarArchivo(archivo,Documento);
-                            if(mensaje!=null){
-                                setTitle("BatLan "+archivo.getAbsolutePath());
-                                //JOptionPane.showMessageDialog(null, mensaje);
-                            } else{
-                                JOptionPane.showMessageDialog(null, mensaje);
-                            }
-                        
+              seleccionar.setName(archivo.getName()+".btl");
+              archivo=seleccionar.getSelectedFile();
+            
+               if(archivo.getName().endsWith("btl")){
+                String Documento=codigoPrincipal.getText();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje);
                 }
-                
-                
-                
+                    
+            }
         } 
     }
     
   public void guardarPantalla(){ 
       try {
       if (!Abierto){
-             guardarComo();
+               seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
+            if(seleccionar.showDialog(null, "Guardar") ==JFileChooser.APPROVE_OPTION){
+                archivo=seleccionar.getSelectedFile();  
+               String Documento=codigoPrincipal.getText().toLowerCase();
+                String mensaje=GuardarArchivo(archivo,Documento);
+                if(mensaje!=null){
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else{
+                    JOptionPane.showMessageDialog(null, mensaje); 
+                }
+
+               } 
             } else {
                   archivo=seleccionar.getSelectedFile();
                 String Documento=codigoPrincipal.getText().toLowerCase();
-                String PATH = archivo.getAbsolutePath();
-              if(!(PATH.endsWith(".btl"))){
-                        File temp = new File(PATH+".btl");
-                        archivo.renameTo(temp);
-                    }
                 String mensaje=GuardarArchivo(archivo,Documento);
                 if(mensaje!=null){
-                    setTitle("BatLan "+archivo.getAbsolutePath());
                     //JOptionPane.showMessageDialog(null, mensaje);
                 } else{
                     JOptionPane.showMessageDialog(null, mensaje); 
@@ -541,8 +514,6 @@ guardarPantalla();
         Lexer lexer = new Lexer (lector);
         
          jEditorPane2.setContentType("text/html");
-         jEditorPane2.setEditable(false);
-         
          //codigoPrincipal.setContentType("text/html");
         
         while (true){
@@ -721,10 +692,6 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
-                case CONS:
-                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+" Constante</font><br>";
-                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
-                    break;
                
             }
     }
@@ -735,17 +702,16 @@ guardarPantalla();
         
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem OpcionSalir;
     private javax.swing.JMenuItem abrirArchivo;
-    private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonCorrer;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonGuardarComo;
-    private javax.swing.JButton botonNuevo;
-    private javax.swing.JButton botonSalir;
     private javax.swing.JEditorPane codigoPrincipal;
     private javax.swing.JMenuItem guardarArchivo;
     private javax.swing.JMenuItem guardarComo;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -755,9 +721,10 @@ guardarPantalla();
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuPArchivo;
-    private javax.swing.JMenuItem opcionNuevo;
     // End of variables declaration//GEN-END:variables
 }

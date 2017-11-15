@@ -47,10 +47,10 @@ public String lexeme;
 "false" {lexeme=yytext(); return PR; }
 
 /*Constantes*/
-"pi" {lexeme=yytext(); return CONS; }
+"PI" {lexeme=yytext(); return CONS; }
 "euler" {lexeme=yytext(); return CONS; }
-"fi" {lexeme=yytext(); return CONS; }
-"stepbystep" {lexeme=yytext(); return CONS; }
+"Fi" {lexeme=yytext(); return CONS; }
+"StepByStep" {lexeme=yytext(); return CONS; }
 
 /*FUNCION*/
 "sqrt" {lexeme=yytext(); return FUNCION; }
