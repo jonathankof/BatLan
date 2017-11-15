@@ -44,6 +44,8 @@ public class vista extends javax.swing.JFrame {
     boolean Abierto=false;
     public String AbrirArchivo(File archivo){
         String documento = "";
+        String PATH=archivo.getAbsolutePath();
+        setTitle("BatLan "+PATH);
         try{
             entrada=new FileInputStream(archivo);
             int ar;
@@ -59,7 +61,8 @@ public class vista extends javax.swing.JFrame {
     }
     public String GuardarArchivo(File archivo, String documento){
         String mensaje=null;
-        
+        String PATH=archivo.getAbsolutePath();
+        setTitle("BatLan "+PATH);
         try{
             Abierto=true;
             salida=new FileOutputStream(archivo);
@@ -455,7 +458,8 @@ guardarPantalla();
               archivo=seleccionar.getSelectedFile();
               seleccionar.setName(archivo.getName()+".btl");
               archivo=seleccionar.getSelectedFile();
-            
+               String PATH=archivo.getAbsolutePath();
+             setTitle("BatLan "+PATH);
                if(archivo.getName().endsWith("btl")){
                 String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
