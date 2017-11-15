@@ -123,6 +123,7 @@ public class vista extends javax.swing.JFrame {
         jScrollPane1.setViewportView(codigoPrincipal);
 
         jEditorPane2.setBackground(new java.awt.Color(140, 140, 140));
+        jEditorPane2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jEditorPane2.setForeground(new java.awt.Color(255, 255, 255));
         jEditorPane2.setCaretColor(new java.awt.Color(255, 255, 255));
         jEditorPane2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
