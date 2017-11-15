@@ -120,9 +120,9 @@ public class vista extends javax.swing.JFrame {
 
         codigoPrincipal.setBackground(new java.awt.Color(140, 140, 140));
         codigoPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        codigoPrincipal.setForeground(new java.awt.Color(13, 0, 159));
+        codigoPrincipal.setForeground(new java.awt.Color(102, 255, 255));
         codigoPrincipal.setCaretColor(new java.awt.Color(255, 255, 255));
-        codigoPrincipal.setSelectedTextColor(new java.awt.Color(13, 0, 159));
+        codigoPrincipal.setSelectedTextColor(new java.awt.Color(153, 255, 255));
         jScrollPane1.setViewportView(codigoPrincipal);
 
         jEditorPane2.setBackground(new java.awt.Color(140, 140, 140));
@@ -516,7 +516,11 @@ guardarPantalla();
         String textoFormateado=""; 
         Reader lector = new BufferedReader(new FileReader(archivo));
         Lexer lexer = new Lexer (lector);
-        
+        String a="#FFFA00";
+        String v="#00E500";
+        String az="#01E9FF";
+        String var="#B4FD50";
+        String num="#A0FC22";
          jEditorPane2.setContentType("text/html");
          //codigoPrincipal.setContentType("text/html");
         
@@ -528,23 +532,23 @@ guardarPantalla();
             }     
                 switch (token){
                 case SUMA:
-                    resultado=resultado+ "<font color=\"gray\">+ Simbolo SUMA</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">+ Simbolo SUMA</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTA:
-                    resultado=resultado+ "<font color=\"gray\">- Simbolo Menos</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">- Simbolo Menos</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">-</font>";
                     break;
                 case MULTIPLICACION:
-                    resultado=resultado+ "<font color=\"gray\">* Simbolo Multiplicacion</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">* Simbolo Multiplicacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">*</font>";
                     break;
                 case DIVISION:
-                    resultado=resultado+ "<font color=\"gray\">/ Simbolo Division</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">/ Simbolo Division</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
                     break;
                 case ASIGNACION:
-                    resultado=resultado+ "<font color=\"gray\">= Simbolo Asignacion</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">= Simbolo Asignacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
@@ -556,19 +560,19 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"blue\">"+lexer.lexeme+"</font>";
                     break;                
                 case INT:
-                    resultado=resultado+ "<font color=\"green\">"+lexer.lexeme +" Entero<br></font>";
+                    resultado=resultado+ "<font color=\""+v+"\">"+lexer.lexeme +" Entero<br></font>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;
                 case PR:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Palabra reservada</font><br>";
+                    resultado=resultado+ "<font color=\""+v+"\">"+lexer.lexeme +" Palabra reservada</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";
                     break;
                 case LIB:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de libreria</font><br>";
+                    resultado=resultado+ "<font color=\""+az+"\">"+lexer.lexeme +" Nombre de libreria</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";          
                     break; 
                 case VAR:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme +" Nombre de variable</font><br>";
+                    resultado=resultado+ "<font color=\""+var+"\">"+lexer.lexeme +" Nombre de variable</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"green\">"+"bdouble"+"</font>";        
                     break;
                 case COMA:
@@ -604,15 +608,15 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"white\">"+"\\u0027"+"</font>";
                     break;  
               case FLOAT:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme+" Numero Flotante<br>";
+                    resultado=resultado+ "<font color=\""+num+"\">"+lexer.lexeme+" Numero Flotante<br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;   
               case OBJETO:
-                    resultado=resultado+ "<font color=\"white\">"+lexer.lexeme+" OBJETO</font><br>";
+                    resultado=resultado+ "<font color=\""+v+"\">"+lexer.lexeme+" OBJETO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
               case EVENTO:
-                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" EVENTO</font><br>";
+                    resultado=resultado+"<font color=\""+v+"\">"+lexer.lexeme+" EVENTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;  
                case ESPACIO:
@@ -624,27 +628,27 @@ guardarPantalla();
                     //textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;
                 case DIFERENTE:
-                    resultado=resultado+"<font color=\"white\">!= Diferente</font><br>";
+                    resultado=resultado+"<font color=\""+a+"\">!= Diferente</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
                  case OPERA:
-                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" Operacion</font><br>";
+                    resultado=resultado+"<font color=\""+a+"\">"+lexer.lexeme+" Operacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;    
                  case FUNCION:
-                    resultado=resultado+"<font color=\"white\">"+lexer.lexeme+" FUNCION</font><br>";
+                    resultado=resultado+"<font color=\""+v+"\">"+lexer.lexeme+" FUNCION</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break; 
                   case PUNTO:
-                    resultado=resultado+ "<font color=\"gray\">. Simbolo PUNTO</font><br>";
+                    resultado=resultado+ "<font color=\"white\">. Simbolo PUNTO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case DIRECTIVAS:  
-                    resultado=resultado+ "<font color=\"gray\">@ Directivas</font><br>";
+                    resultado=resultado+ "<font color=\"white\">@ Directivas</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case MODULO: 
-                    resultado=resultado+ "<font color=\"gray\">% Operador: Modulo</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">% Operador: Modulo</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ANGLED: 
@@ -652,28 +656,28 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ANGLEI:  
-                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+"Operador: Menor que</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+"Operador: Menor que</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 
                 case COMPARACION: 
-                    resultado=resultado+ "<font color=\"gray\"> ==  Operador: Menor que</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\"> ==  Operador: Menor que</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ASPERSON:
-                    resultado=resultado+ "<font color=\"gray\"> &  Operador: Menor que</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\"> &  Operador: Menor que</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case NOT: 
-                    resultado=resultado+ "<font color=\"gray\">Operador: Negación</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador: Negación</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case SUMAM: 
-                    resultado=resultado+ "<font color=\"gray\">Operador de suma</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador de suma</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTAM: 
-                    resultado=resultado+ "<font color=\"gray\">Operador de resta</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador de resta</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case MULTIPLICACIONM: 
@@ -681,19 +685,19 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case DIVISIONM: 
-                    resultado=resultado+ "<font color=\"gray\"> Operador de división</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\"> Operador de división</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case AND: 
-                    resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador: lógico</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case POW: 
-                    resultado=resultado+ "<font color=\"gray\">Operador: potencia</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador: potencia</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case OR: 
-                    resultado=resultado+ "<font color=\"gray\">Operador: lógico</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">Operador: lógico</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                
