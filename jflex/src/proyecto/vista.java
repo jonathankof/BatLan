@@ -693,11 +693,15 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case POW: 
-                    resultado=resultado+ "<font color=\""+a+"\">Operador: potencia</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">^ Operador: potencia</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case OR: 
                     resultado=resultado+ "<font color=\""+a+"\">Operador: lógico</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                case COMENTARIO: 
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" Comentarios</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                

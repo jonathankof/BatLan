@@ -116,7 +116,7 @@ public String lexeme;
 "+" {return SUMA;}
 "*" {return MULTIPLICACION;}
 "-" {return RESTA;}
-"""" {return DIVISION;}
+"\u002F" {return DIVISION;}
 "&" {return ASPERSON;}
 "!" {return NOT;}
 "+=" {return SUMAM;}
@@ -125,19 +125,20 @@ public String lexeme;
 "/=" {return DIVISIONM;}
 "!=" {return DIFERENTE;}
 "&&" {return AND;}
-"^" {return POW;}
 "||" {return OR;}
 "PR" {return PR;}
 "\u0022" {return COMILLAD;}
 "\u0027" {return COMILLAS;}
 
+
 /*EBNF*/
 "\u0022"(.)*"\u0022" {lexeme=yytext(); return TEXTO;}
-("-")?{D}+ {lexeme=yytext(); return INT;}
-("-")?{D}*("."){D}* {lexeme=yytext(); return FLOAT;} 
+{D}+ {lexeme=yytext(); return INT;}
+{D}*("."){D}+ {lexeme=yytext(); return FLOAT;} 
+{D}*("."){D} {lexeme=yytext(); return DOUBLE;} 
 ({L}+)("."|":")({L}+) {lexeme=yytext(); return OPERA;} 
 "<"({L}|{D}|{WHITE})*">" {lexeme=yytext(); return HTML; }
-"""*"({L}|{D}|{WHITE})*"*""" {lexeme=yytext(); return COMENTARIO; }
+("\u002F")("\u002F")(.)* {lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")+ {lexeme=yytext(); return VAR;}
 ({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)?("\u0029") {lexeme=yytext(); return FUNCION;}
 ("_"|{L})({L}|{D})* {lexeme=yytext(); return VAR;} 
