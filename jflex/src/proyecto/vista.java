@@ -479,7 +479,7 @@ guardarPantalla();
                seleccionar.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de BatLan","btl"));
             if(seleccionar.showDialog(null, "Guardar") ==JFileChooser.APPROVE_OPTION){
                 archivo=seleccionar.getSelectedFile();  
-               String Documento=codigoPrincipal.getText().toLowerCase();
+               String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
                 if(mensaje!=null){
                     JOptionPane.showMessageDialog(null, mensaje);
@@ -490,7 +490,7 @@ guardarPantalla();
                } 
             } else {
                   archivo=seleccionar.getSelectedFile();
-                String Documento=codigoPrincipal.getText().toLowerCase();
+                String Documento=codigoPrincipal.getText();
                 String mensaje=GuardarArchivo(archivo,Documento);
                 if(mensaje!=null){
                     //JOptionPane.showMessageDialog(null, mensaje);
@@ -548,7 +548,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">/</font>";
                     break;
                 case ASIGNACION:
-                    resultado=resultado+ "<font color=\""+a+"\">= Simbolo Asignacion</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" Simbolo Asignacion</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">=</font>";
                     break;
                 case ERROR:
@@ -611,6 +611,10 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\""+num+"\">"+lexer.lexeme+" Numero Flotante<br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
                     break;   
+            case DOUBLE:
+                    resultado=resultado+ "<font color=\""+num+"\">"+lexer.lexeme+" Numero Doble<br>";
+                    textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
+                    break;           
               case OBJETO:
                     resultado=resultado+ "<font color=\""+v+"\">"+lexer.lexeme+" OBJETO</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"white\">"+lexer.lexeme+"</font>";
