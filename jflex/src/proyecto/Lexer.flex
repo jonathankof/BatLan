@@ -145,5 +145,7 @@ public String lexeme;
 ({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)?("\u0029") {lexeme=yytext(); return FUNCION;}
 ("_"|{L})({L}|{D})* {lexeme=yytext(); return VAR;} 
 /*Error*/
+(".")({D}+|{L}|".")+ {lexeme=yytext(); return ERROR;} 
+{D}+(".")({D}|{L}|".")+ {lexeme=yytext(); return ERROR;} 
 ({D})({L}|{D}|"_")+ {lexeme=yytext(); return ERROR;}
 . {lexeme=yytext(); return ERROR;}
