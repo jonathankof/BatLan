@@ -19,7 +19,7 @@ public int numero;
 {ESPACIO} {/*Ignore*/}
 
 /*Palabras reservadas*/
-!"*/" {numero=yyline; lexeme=yytext(); return PR;}
+
 ~"bint" {numero=yyline; lexeme=yytext(); return PR;}
 "bdouble" {numero=yyline; lexeme=yytext(); return PR;}
 "bfloat" {numero=yyline; lexeme=yytext(); return PR;}
