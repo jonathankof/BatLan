@@ -29,3 +29,4 @@ except Error:SystemError
 MsgWarning("El sistema no puede operar porque:",Error)
 }
 }
+#seuihg156sghsebg

@@ -136,7 +136,8 @@ public int numero;
 {D}*("."){D}{1,5} {numero=yyline; lexeme=yytext(); return FLOAT;} 
 {D}*("."){D}+ {numero=yyline; lexeme=yytext(); return DOUBLE;} 
 ("_"|{L})({L}|{D}|"_")+ ("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
-("_"|{L})({L}|"_")+(".") {numero=yyline; lexeme=yytext(); return OBJETO;} 
+("_"|{L})({L}|"_")+(".")("_"|{L})({L}|"_")+ {numero=yyline; lexeme=yytext(); return VAROBJETO;} 
+("_"|{L})({L}|"_")+(".")("_"|{L})({L}|"_")+("("({L}|{D}|"_")*")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
 "<"({L}|{D}|{WHITE})*">" {numero=yyline; lexeme=yytext(); return HTML; }
 ("\u002F")("\u002F")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return VAR;}
@@ -146,4 +147,5 @@ public int numero;
 (".")({D}+|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 {D}+(".")({D}|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 ({D})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return ERROR;}
+
 . {numero=yyline; lexeme=yytext(); return ERROR;}
