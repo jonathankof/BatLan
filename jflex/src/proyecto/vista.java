@@ -120,9 +120,10 @@ public class vista extends javax.swing.JFrame {
 
         codigoPrincipal.setBackground(new java.awt.Color(140, 140, 140));
         codigoPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        codigoPrincipal.setForeground(new java.awt.Color(102, 255, 255));
+        codigoPrincipal.setForeground(new java.awt.Color(100, 0, 0));
         codigoPrincipal.setCaretColor(new java.awt.Color(255, 255, 255));
-        codigoPrincipal.setSelectedTextColor(new java.awt.Color(153, 255, 255));
+        codigoPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        codigoPrincipal.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jScrollPane1.setViewportView(codigoPrincipal);
 
         jEditorPane2.setBackground(new java.awt.Color(140, 140, 140));
@@ -712,7 +713,14 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Variable Arreglo "+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;    
-                    
+                case VAROBJETO: 
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Variable de objeto "+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;  
+                case CONS: 
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Constantes "+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;  
                
             }
     }

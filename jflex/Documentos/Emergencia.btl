@@ -1,12 +1,30 @@
-Import situations Import threading Import defense main emergencies (){
+Import situations
+Import threading 
+Import defense 
+main emergencies (){
 under_attack: situation
 threads=list()
-defensive=threading.Thread(Under_attack) threads.append(defensive) defensive.start emergency: situation place1, place2: location place1=emergency.place place2=here
+defensive=threading.Thread(Under_attack) 
+threads.append(defensive) 
+defensive.start emergency: situation 
+place1, place2: location 
+place1=emergency.place place2=here
 try{
 If (place1 != place2)
 else
-{ go_walk:action for (place1, place2, StepByStep) go_walk.walk }{ instruction:action if (instruction.event()) { instruction.do} }
-} except Error:SystemError
+{ 
+go_walk:action 
+for (place1, place2, StepByStep) 
+go_walk.walk()
+go_walk.stop()
+go_walk.p1=place1
+ }
+
+{ instruction:action 
+
+if (instruction.event()) { instruction.do} }
+}
+except Error:SystemError
 {
 MsgWarning("El sistema no puede operar porque:",Error)
 }

@@ -20,7 +20,7 @@ public int numero;
 
 /*Palabras reservadas*/
 
-~"bint" {numero=yyline; lexeme=yytext(); return PR;}
+"bint" {numero=yyline; lexeme=yytext(); return PR;}
 "bdouble" {numero=yyline; lexeme=yytext(); return PR;}
 "bfloat" {numero=yyline; lexeme=yytext(); return PR;}
 "bstring" {numero=yyline; lexeme=yytext(); return PR;}
@@ -89,6 +89,7 @@ public int numero;
 "lights"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
 "vehicle"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
 "weapon"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
+("_"|{L})({L}|"_")+{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return VAROBJETO;}
 
 /*Librerias*/
 "situations" {numero=yyline; lexeme=yytext(); return LIB;}
@@ -135,7 +136,7 @@ public int numero;
 {D}*("."){D}{1,5} {numero=yyline; lexeme=yytext(); return FLOAT;} 
 {D}*("."){D}+ {numero=yyline; lexeme=yytext(); return DOUBLE;} 
 ("_"|{L})({L}|{D}|"_")+ ("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
-
+("_"|{L})({L}|"_")+(".") {numero=yyline; lexeme=yytext(); return OBJETO;} 
 "<"({L}|{D}|{WHITE})*">" {numero=yyline; lexeme=yytext(); return HTML; }
 ("\u002F")("\u002F")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return VAR;}
