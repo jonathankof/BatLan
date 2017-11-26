@@ -10,9 +10,12 @@ D = [0-9]
 
 WHITE=[\ \r\t\r\n]
 ESPACIO=" "
+SIMBOLOS= [+|-|/|*|=]
+
 %{
 public String lexeme;
 public int numero;
+
 %}
 %%
 {WHITE} {/*Ignore*/}
@@ -34,7 +37,6 @@ public int numero;
 "private" {numero=yyline; lexeme=yytext(); return PR; }
 "public" {numero=yyline; lexeme=yytext(); return PR; }
 "import" {numero=yyline; lexeme=yytext(); return PR; }
-
 "if" {numero=yyline; lexeme=yytext(); return PR; }
 "then" {numero=yyline; lexeme=yytext(); return PR; }
 "else" {numero=yyline; lexeme=yytext(); return PR; }
@@ -57,10 +59,7 @@ public int numero;
 /*FUNCION*/
 "sqrt" {numero=yyline; lexeme=yytext(); return FUNCION; }
 "pow" {numero=yyline; lexeme=yytext(); return FUNCION; }
-"location" {numero=yyline; lexeme=yytext(); return FUNCION; }
 "list" {numero=yyline; lexeme=yytext(); return FUNCION; }
-"Threads" {numero=yyline; lexeme=yytext(); return FUNCION; }
-"defensive" {numero=yyline; lexeme=yytext(); return FUNCION; }
 "start" {numero=yyline; lexeme=yytext(); return FUNCION; }
 "here" {numero=yyline; lexeme=yytext(); return FUNCION; }
 "Error" {numero=yyline; lexeme=yytext(); return VAR;}
@@ -89,17 +88,21 @@ public int numero;
 "lights"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
 "vehicle"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
 "weapon"{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return OBJETO;}
-("_"|{L})({L}|"_")+{WHITE}*("\u0028")(.)("\u0029") {numero=yyline; lexeme=yytext(); return VAROBJETO;}
+"Threads" {numero=yyline; lexeme=yytext(); return OBJETO;}
+"defensive" {numero=yyline; lexeme=yytext(); return OBJETO;}
+
+"location" {numero=yyline; lexeme=yytext(); return OBJETO;}
 
 /*Librerias*/
 "situations" {numero=yyline; lexeme=yytext(); return LIB;}
 "threading" {numero=yyline; lexeme=yytext(); return LIB;}
 "defense" {numero=yyline; lexeme=yytext(); return LIB;}
+
 "@" {numero=yyline; return DIRECTIVAS;}
 "%" {numero=yyline; return MODULO;}
 ">" {numero=yyline; lexeme=yytext(); return ANGLED;}
 "<" {numero=yyline; lexeme=yytext(); return ANGLEI;}
-"^" {numero=yyline; lexeme=yytext(); return EXPO;}
+
 "log2" {numero=yyline; lexeme=yytext(); return LOG2;}
 "log10" {numero=yyline; lexeme=yytext(); return LOG10;}
 "ln2" {numero=yyline; lexeme=yytext(); return LN2;}
@@ -130,22 +133,23 @@ public int numero;
 "\u0027" {numero=yyline; return COMILLAS;}
 
 
+
 /*EBNF*/
 "\u0022"(.)*"\u0022" {numero=yyline; lexeme=yytext(); return TEXTO;}
+"\u0027"{L}{1,1}"\u0027" {numero=yyline; lexeme=yytext(); return CARACTER;}
 {D}+ {numero=yyline; lexeme=yytext(); return INT;}
 {D}*("."){D}{1,5} {numero=yyline; lexeme=yytext(); return FLOAT;} 
 {D}*("."){D}+ {numero=yyline; lexeme=yytext(); return DOUBLE;} 
-("_"|{L})({L}|{D}|"_")+ ("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
-("_"|{L})({L}|"_")+(".")("_"|{L})({L}|"_")+ {numero=yyline; lexeme=yytext(); return VAROBJETO;} 
-("_"|{L})({L}|"_")+(".")("_"|{L})({L}|"_")+("("({L}|{D}|"_")*")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
+("_"|{L})({L}|{D}|"_")+("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
 "<"({L}|{D}|{WHITE})*">" {numero=yyline; lexeme=yytext(); return HTML; }
 ("\u002F")("\u002F")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
-("_"|{L})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return VAR;}
+("_"|{L})({L}|{D}|"_")* {numero=yyline; lexeme=yytext(); return VAR;}
 ({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)?("\u0029") {numero=yyline; lexeme=yytext(); return FUNCION;}
-("_"|{L})({L}|{D})* {numero=yyline; lexeme=yytext(); return VAR;} 
+("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)? {numero=yyline; lexeme=yytext(); return VAROBJETO;}
+ ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)?("("(.)")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
+
 /*Error*/
 (".")({D}+|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 {D}+(".")({D}|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 ({D})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return ERROR;}
-
 . {numero=yyline; lexeme=yytext(); return ERROR;}

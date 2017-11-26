@@ -664,6 +664,26 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Operador: Menor que "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
+                    case LOG2:  
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Funcion: Logaritmo Base 2 "+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                       case LOG10:  
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Funcion: Logaritmo Base 10 "+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break; 
+                    case LN2:  
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Funcion: Logaritmo Natural Base 2 "+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                   case LN10:  
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Funcion: Logaritmo Natural Base 10 "+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
+                     case CARACTER:  
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Caracter"+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;
                 
                 case COMPARACION: 
                     resultado=resultado+ "<font color=\""+a+"\"> == &#9 Operador: Menor que "+ lin+(lexer.numero+1)+"</font><br>";
@@ -725,6 +745,11 @@ guardarPantalla();
                     resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Metodo de objeto "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;  
+                 case LBOOLEANA: 
+                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Metodo de objeto "+lin+(lexer.numero+1)+"</font><br>";
+                    textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
+                    break;  
+               
                
             }
     }
