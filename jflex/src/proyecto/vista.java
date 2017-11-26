@@ -657,11 +657,11 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ANGLED: 
-                    resultado=resultado+ "<font color=\"gray\">"+lexer.lexeme+" &#9 Operador: Mayor que "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\"gray\">&#62 &#9 Operador: Mayor que "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ANGLEI:  
-                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Operador: Menor que "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">&#60 &#9 Operador: Menor que "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                     case LOG2:  
@@ -690,31 +690,31 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case ASPERSON:
-                    resultado=resultado+ "<font color=\""+a+"\"> & &#9 Operador: Menor que "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">& & &#9 Operador: Menor que "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case NOT: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador: Negación "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">! &#9 Operador: Negación "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case SUMAM: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador de suma "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">+= &#9 Operador de suma "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case RESTAM: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador de resta "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">-= &#9 Operador de resta "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case MULTIPLICACIONM: 
-                    resultado=resultado+ "<font color=\"gray\"> &#9 Operador de multiplicación "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\"gray\">*= &#9 Operador de multiplicación "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case DIVISIONM: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador de división "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">/= &#9 Operador de división "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case AND: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador: lógico "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">&& &#9 Operador: lógico "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case POW: 
@@ -722,7 +722,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case OR: 
-                    resultado=resultado+ "<font color=\""+a+"\"> &#9 Operador: lógico "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+a+"\">|| &#9 Operador: lógico "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case COMENTARIO: 

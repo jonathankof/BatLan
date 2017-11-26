@@ -10,7 +10,8 @@ D = [0-9]
 
 WHITE=[\ \r\t\r\n]
 ESPACIO=" "
-SIMBOLOS= [+|-|/|*|=]
+SIMBOLOS= [+|-|/|*|=|==|&|!|+=|"-="|*=|/=|!=|:|@|%|>|<|\u007C|(|)|{|}|\u0022|\u0027]
+
 
 %{
 public String lexeme;
@@ -100,8 +101,8 @@ public int numero;
 
 "@" {numero=yyline; return DIRECTIVAS;}
 "%" {numero=yyline; return MODULO;}
-">" {numero=yyline; lexeme=yytext(); return ANGLED;}
-"<" {numero=yyline; lexeme=yytext(); return ANGLEI;}
+">" {numero=yyline; return ANGLED;}
+"<" {numero=yyline; return ANGLEI;}
 
 "log2" {numero=yyline; lexeme=yytext(); return LOG2;}
 "log10" {numero=yyline; lexeme=yytext(); return LOG10;}
@@ -133,7 +134,6 @@ public int numero;
 "\u0027" {numero=yyline; return COMILLAS;}
 
 
-
 /*EBNF*/
 "\u0022"(.)*"\u0022" {numero=yyline; lexeme=yytext(); return TEXTO;}
 "\u0027"{L}{1,1}"\u0027" {numero=yyline; lexeme=yytext(); return CARACTER;}
@@ -144,7 +144,7 @@ public int numero;
 "<"({L}|{D}|{WHITE})*">" {numero=yyline; lexeme=yytext(); return HTML; }
 ("\u002F")("\u002F")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")* {numero=yyline; lexeme=yytext(); return VAR;}
-({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)?("\u0029") {numero=yyline; lexeme=yytext(); return FUNCION;}
+({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)*("\u0029") {numero=yyline; lexeme=yytext(); return FUNCION;}
 ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)? {numero=yyline; lexeme=yytext(); return VAROBJETO;}
  ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)?("("(.)")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
 
