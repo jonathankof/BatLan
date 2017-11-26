@@ -122,7 +122,6 @@ public class vista extends javax.swing.JFrame {
         codigoPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         codigoPrincipal.setCaretColor(new java.awt.Color(255, 255, 255));
         codigoPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        codigoPrincipal.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jScrollPane1.setViewportView(codigoPrincipal);
 
         jEditorPane2.setBackground(new java.awt.Color(140, 140, 140));
@@ -522,6 +521,9 @@ guardarPantalla();
         String az="#01E9FF";
         String var="#B4FD50";
         String num="#A0FC22";
+        String com="#7D0047";
+        String varo="#FF9319";
+        String cons="#3FC3C9";
          jEditorPane2.setContentType("text/html");
          //codigoPrincipal.setContentType("text/html");
         
@@ -726,7 +728,7 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                 case COMENTARIO: 
-                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Comentarios "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+com+"\">"+lexer.lexeme+" &#9 Comentarios "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;
                  case ARREGLO: 
@@ -734,15 +736,15 @@ guardarPantalla();
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;    
                 case VAROBJETO: 
-                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Variable de objeto "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+varo+"\">"+lexer.lexeme+" &#9 Variable de objeto "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;  
                 case CONS: 
-                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Constantes "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+cons+"\">"+lexer.lexeme+" &#9 Constantes "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;  
                    case METOBJETO: 
-                    resultado=resultado+ "<font color=\""+a+"\">"+lexer.lexeme+" &#9 Metodo de objeto "+lin+(lexer.numero+1)+"</font><br>";
+                    resultado=resultado+ "<font color=\""+varo+"\">"+lexer.lexeme+" &#9 Metodo de objeto "+lin+(lexer.numero+1)+"</font><br>";
                     textoFormateado=textoFormateado+"<font color=\"gray\">+</font>";
                     break;  
                  case LBOOLEANA: 

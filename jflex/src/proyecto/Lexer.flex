@@ -142,13 +142,14 @@ public int numero;
 {D}*("."){D}+ {numero=yyline; lexeme=yytext(); return DOUBLE;} 
 ("_"|{L})({L}|{D}|"_")+("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
 "<"({L}|{D}|{WHITE})*">" {numero=yyline; lexeme=yytext(); return HTML; }
-("\u002F")("\u002F")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
+("\u005C")("\u005C")(.)* {numero=yyline; lexeme=yytext(); return COMENTARIO; }
 ("_"|{L})({L}|{D}|"_")* {numero=yyline; lexeme=yytext(); return VAR;}
 ({L}|"_")({L}|"_"|{D})+{WHITE}*("\u0028")(.)*("\u0029") {numero=yyline; lexeme=yytext(); return FUNCION;}
 ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)? {numero=yyline; lexeme=yytext(); return VAROBJETO;}
  ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)?("("(.)")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
 
 /*Error*/
+("\u0023")(.)* {numero=yyline; lexeme=yytext(); return ERROR;}
 (".")({D}+|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 {D}+(".")({D}|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 ({D})({L}|{D}|"_")+ {numero=yyline; lexeme=yytext(); return ERROR;}
