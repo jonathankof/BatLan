@@ -511,7 +511,7 @@ guardarPantalla();
      */
     public String tokenizar() throws FileNotFoundException, IOException{
         try{
-         String lin=" Línea: ";
+         String lin="&#9 Línea: ";
          String resultado="";
         String textoFormateado=""; 
         Reader lector = new BufferedReader(new FileReader(archivo));
