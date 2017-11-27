@@ -137,7 +137,7 @@ public int numero;
 /*EBNF*/
 "\u0022"(.)*"\u0022" {numero=yyline; lexeme=yytext(); return TEXTO;}
 "\u0027"{L}{1,1}"\u0027" {numero=yyline; lexeme=yytext(); return CARACTER;}
-{D}+ {numero=yyline; lexeme=yytext(); return INT;}
+{D}{D}* {numero=yyline; lexeme=yytext(); return INT;}
 {D}*("."){D}{1,5} {numero=yyline; lexeme=yytext(); return FLOAT;} 
 {D}*("."){D}+ {numero=yyline; lexeme=yytext(); return DOUBLE;} 
 ("_"|{L})({L}|{D}|"_")+("["{D}*"]") {numero=yyline; lexeme=yytext(); return ARREGLO;} 
@@ -149,6 +149,7 @@ public int numero;
  ("_"|{L})({L}|{D}|"_")+(".")("_"|{L})({L}|{D}|"_")+({SIMBOLOS}("_"|{L})({L}|{D}|"_")+)?("("(.)")") {numero=yyline; lexeme=yytext(); return METOBJETO;}
 
 /*Error*/
+!({D}{L})+("."){D}+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 ("\u0023")(.)* {numero=yyline; lexeme=yytext(); return ERROR;}
 (".")({D}+|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
 {D}+(".")({D}|{L}|".")+ {numero=yyline; lexeme=yytext(); return ERROR;} 
